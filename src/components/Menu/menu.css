@@ -1,18 +1,18 @@
 .menu__wrapper {
   height: 100vh;
-  width: 20vw;
+  width: 18vw;
   color: #80858B;
   font-size: 18px;
   font-family: Exo 2;
   font-weight: 600;
   line-height: 24px;
   word-wrap: break-word;
-  padding: 48px 0 64px 64px;
+  padding: 48px 0 4vh 4vw;
   position: fixed;
   background-color: black;
 }
 .menu__wrapper .menu__logo {
-  padding-bottom: 64px;
+  padding: 0 20px 64px 0;
 }
 .menu__wrapper .menu__link {
   padding: 0 40px 40px 0;
@@ -30,6 +30,10 @@
 }
 .menu__wrapper .rights-reserved {
   position: absolute;
-  left: 62px;
-  bottom: 64px;
+  left: 4vw;
+  bottom: 4vh;
+}
+.menu__wrapper .active {
+  color: #7B61FF;
+  fill: #7B61FF;
 }

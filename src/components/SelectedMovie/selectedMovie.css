@@ -1,0 +1,12 @@
+.selected-movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 152px 3vw 0 18vw;
+}
+
+.SelectedMovie {
+  color: white;
+}

@@ -43,6 +43,10 @@ input, button, textarea, select {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;

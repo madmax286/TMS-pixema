@@ -4,7 +4,7 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GET_MOVIES } from '../../actions/actions';
 import { IMovie } from '../../interfaces';
-import { Movie, PageTemplate } from "../../components";
+import { MovieCard, PageTemplate } from "..";
 import "./moviesList.css";
 
 const MoviesList = () => {
@@ -17,25 +17,25 @@ const MoviesList = () => {
       }
     }, []);
   
-    console.log(movies);
-  
   return (
     <div>
       <PageTemplate>
-        <div className="movies-list">
-          {movies.length &&
-            movies.map(({ Title, Year, imdbID, Type, Poster }: IMovie) => (
-              <Movie
-                key={imdbID}
-                imdbID={imdbID}
-                Title={Title}
-                Year={Year}
-                Type={Type}
-                Poster={Poster}
-              />
-            ))}          
+        <div className="movies-layout">
+          <div className="movies-list">
+            {movies.length &&
+              movies.map(({ Title, Year, imdbID, Type, Poster }: IMovie) => (
+                <MovieCard
+                  key={imdbID}
+                  imdbID={imdbID}
+                  Title={Title}
+                  Year={Year}
+                  Type={Type}
+                  Poster={Poster}
+                />
+              ))}
+          </div>
+          <button className='btn-show_more' type='button'>Show more</button>
         </div>
-        {/* <button>Show more</button> */}
       </PageTemplate>
     </div>
   );

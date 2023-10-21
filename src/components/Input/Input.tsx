@@ -4,7 +4,7 @@ import './input.css'
 const Input = () => {
   return (
     <div className='input-wrapper'>
-      <input type="search" placeholder='Search'/>
+      <input type="search" placeholder='Search' name='search'/>
     </div>
   )
 }
