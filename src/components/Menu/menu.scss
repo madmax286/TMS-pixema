@@ -1,0 +1,37 @@
+.menu__wrapper {
+    height: 100vh;
+    width: 20vw;
+    color: #80858B;
+    font-size: 18px;
+    font-family: Exo 2;
+    font-weight: 600;
+    line-height: 24px;
+    word-wrap: break-word;
+    padding: 48px 0 64px 64px;
+    position: fixed;
+    background-color: black;
+
+    .menu__logo {
+        padding-bottom: 64px;
+    }
+    .menu__link {
+        padding: 0 40px 40px 0;
+        display: flex;
+        justify-content: left;
+        fill: #80858B;
+
+        &:hover {
+            cursor: pointer;
+            color: #7B61FF;
+            fill: #7B61FF;
+        }
+        span {
+            padding-left: 20px;
+        }        
+    }
+    .rights-reserved {
+        position: absolute;
+        left: 62px;
+        bottom: 64px;
+    }
+}

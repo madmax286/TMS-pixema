@@ -1,0 +1,11 @@
+.movies-list {
+    width: calc(100% - 20vw);
+    margin: 152px 62px 64px 20vw;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 3% 2%;
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* gap: 2%; */
+}

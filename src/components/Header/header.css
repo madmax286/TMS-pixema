@@ -1,0 +1,10 @@
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 152px;
+    padding: 40px 62px 56px 0;
+    width: calc(100% - 20vw);
+    position: fixed;
+    left: 20vw;
+    background-color: black;
+}

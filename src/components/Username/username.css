@@ -1,0 +1,9 @@
+.username {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,8 @@
+export { default as Header } from './Header/Header'
+export { default as Input } from './Input/Input'
+export { default as Menu } from './Menu/Menu'
+export { default as Movie } from './Movie/Movie'
+export { default as MoviesList } from './MoviesList/MoviesList'
+export { default as PageTemplate } from './PageTemplate/PageTemplate'
+export { default as Search } from './Search/Search'
+export { default as Username } from './Username/Username'
