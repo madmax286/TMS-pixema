@@ -32,6 +32,7 @@
   position: absolute;
   left: 4vw;
   bottom: 4vh;
+  right: 20px;
 }
 .menu__wrapper .active {
   color: #7B61FF;

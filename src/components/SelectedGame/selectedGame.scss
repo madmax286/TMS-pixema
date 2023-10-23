@@ -1,0 +1,56 @@
+.game-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    padding: 152px 3vw 0 18vw;
+}
+
+.game__screenshots {
+    width: 48%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2%;
+
+    img {
+        border-radius: 10px;
+    }
+}
+
+.game__description {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    
+    .game__genres, .game__platforms, a {
+        display: flex;
+        color: #AFB2B6;
+
+        h5 {
+            margin-right: 1%;
+            font-weight: 500;
+        }
+    }
+    h1, h4 {
+        margin: 20px 0 20px 0;
+    }
+    h4 {
+        font-weight: 500;
+        display: -webkit-box;
+        -webkit-line-clamp: 10;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    h3 {
+        width: 45px;
+        height: 30px;
+        border-radius: 6px;
+        background-color: #00A340;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;    
+    }
+}

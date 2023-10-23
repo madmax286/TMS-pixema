@@ -1,11 +1,12 @@
 import React from 'react'
+import { PageTemplate } from "..";
 import './settings.css'
 
 const Settings = () => {
   return (
-    <div>
-      
-    </div>
+    <PageTemplate>
+      <p className='settings games-layout'>Settings</p>
+    </PageTemplate>
   )
 }
 

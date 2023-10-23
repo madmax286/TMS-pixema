@@ -1,17 +1,13 @@
-.movies-layout {
+.games-layout {
     width: calc(100% - 18vw);
+    /* height: calc(100% - 40px); */
     display: flex;
     flex-direction: column;
-    margin: 152px 4vw 4vh 18vw;
+    margin: 152px 4vw 40px 18vw;
 }
 
-.movies-list {
+.games-list {
     width: 100%;
-    height: 100%;
-    display: grid;
-    /* grid-template-columns: repeat(5, 18%);
-    grid-template-rows: repeat(2, 34vh);
-    gap: 2% 2%; */
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
@@ -19,12 +15,12 @@
 
 .btn-show_more {
     width: 10vw;
-    height: 5vh;
+    height: 40px;
     align-self: center;
     color: white;
     font-weight: 500;
     background-color: #323537;
     border-radius: 40px;
     border: none;
-    margin-top: 3vh;
+    margin-top: 24px;
 }

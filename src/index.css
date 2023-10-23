@@ -60,7 +60,7 @@ body {
 }
 
 body, html {
-  height: 100vh;
+  height: 100%;
 }
 
 code {

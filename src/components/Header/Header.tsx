@@ -4,10 +4,10 @@ import './header.css'
 
 const Header = () => {
   return (
-    <div className='header-wrapper'>
+    <header className='header-wrapper'>
       <Search/>
       <Username/>
-    </div>
+    </header>
   )
 }
 

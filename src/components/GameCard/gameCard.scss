@@ -1,0 +1,56 @@
+.game__card {
+    display: flex;
+    flex-direction: column;
+    width: 18.4%;
+    height: 36vh;
+    position: relative;
+
+    h3, h4 {
+        font-size: .8rem;
+        width: 100%;
+        color: white;
+        margin: 0;
+        margin-right: 3px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    .game__card-rating {
+        width: 39px;
+        height: 28px;
+        border-radius: 6px;
+        background-color: #00A340;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+}
+
+.game__poster{
+    color: white;
+    height: 80%;
+    border-radius: 20px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.game__card-description {
+    margin-top: 2vh;
+    width: 100%;
+
+    .game__card-genres{
+        display: flex;
+        flex-wrap: wrap;
+        color: #AFB2B6;
+        width: 100%;
+
+        span {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+    }
+}

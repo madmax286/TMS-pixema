@@ -3,22 +3,36 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const initialState = {
-  movies: [],
-  movie: []
+  games: [],
+  game: [],
+  screenshots: [],
+  isLoading: false,
 };
 
 const rootReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case "SET_MOVIES": {
+    case "SET_GAMES": {
       return {
         ...state,
-        movies: action.payload,
+        games: [...state.games, ...action.payload],
       };
     }
-    case "SET_SELECTED_MOVIE": {
+    case "SET_SELECTED_GAME": {
       return {
         ...state,
-        movie: [action.payload],
+        game: [action.payload],
+      };
+    }
+    case "SET_GAME_SCREENSHOTS": {
+      return {
+        ...state,
+        screenshots: [action.payload],
+      };
+    }
+    case 'SET_LOADING': {
+      return {
+        ...state,
+        isLoading: !state.isLoading,
       };
     }
     default:

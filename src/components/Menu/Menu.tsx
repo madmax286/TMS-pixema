@@ -13,11 +13,11 @@ const Menu = () => {
   const [activeTrends, setActiveTrends] = useState(false)  
 
   return (
-    <div className="menu__wrapper">
+    <aside className="menu__wrapper">
       <div className="menu__logo">
         <img src={LogoIcon} alt="pixema" />
       </div>
-      <div
+      <nav
         onClick={() => {
           setActiveHome((prev) => !prev);
           navigate("/home");
@@ -26,7 +26,7 @@ const Menu = () => {
       >
         <HomeIcon className="home-icon" />
         <span>Home</span>
-      </div>
+      </nav>
       <div
         onClick={() => {
           setActiveTrends((prev) => !prev);
@@ -37,28 +37,26 @@ const Menu = () => {
         <TrendsIcon className="trends-icon" />
         <span>Trends</span>
       </div>
-      <div className="menu__link menu__favorites">
+      <div
+        onClick={() => {
+          navigate("/favorites");
+        }}
+        className="menu__link menu__favorites"
+      >
         <FavoritesIcon className="favorites-icon" />
-        <span
-          onClick={() => {
-            navigate("/favorites");
-          }}
-        >
-          Favorites
-        </span>
+        <span>Favorites</span>
       </div>
-      <div className="menu__link menu__settings">
+      <div
+        onClick={() => {
+          navigate("/settings");
+        }}
+        className="menu__link menu__settings"
+      >
         <SettingsIcon className="settings-icon" />
-        <span
-          onClick={() => {
-            navigate("/settings");
-          }}
-        >
-          Settings
-        </span>
+        <span>Settings</span>
       </div>
       <span className="rights-reserved">© All Rights Reserved</span>
-    </div>
+    </aside>
   );
 }
 

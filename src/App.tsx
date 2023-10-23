@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {Route, Routes, useNavigate, useLocation, Navigate} from "react-router-dom";
-import { MoviesList, Trends, Favorites, Settings, SelectedMovie } from "./components";
+import { AnyAction } from "redux";
+import { ThunkDispatch } from "redux-thunk";
+import { GamesList, Trends, Favorites, Settings, SelectedGame } from "./components";
 
 const App = () => {
   const location = useLocation();
@@ -12,7 +14,7 @@ const App = () => {
         <Routes>
           <Route
             path="/home"
-            element={<MoviesList />}
+            element={<GamesList />}
           />
           <Route
             path="/trends"
@@ -27,15 +29,9 @@ const App = () => {
             element={<Settings />}
           />
           <Route
-            path="/:Type/:imdbID"
-            // path="/movie"
-            element={<SelectedMovie />}
+            path="/game/:id/:slug"
+            element={<SelectedGame />}
           />
-
-          {/* <Route
-            path="/signin"
-            element={<MoviestList />}
-          /> */}
         </Routes>
         {location.pathname === "/" && <Navigate to="home" />}
       </>

@@ -5,7 +5,7 @@ import './favorites.css'
 const Favorites = () => {
   return (
     <PageTemplate>
-      <p className='trends movies-layout'>Favorites</p>
+      <p className='trends games-layout'>Favorites</p>
     </PageTemplate>
   )
 }
