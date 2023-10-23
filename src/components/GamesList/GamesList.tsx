@@ -10,9 +10,11 @@ import "./gamesList.css";
 const GamesList = () => {
     const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
     const games = useSelector(({ games }) => games);
-    const isLoading = useSelector(({isLoading}) => isLoading)
 
-    let randomPage = Math.floor(Math.random() * 850);
+    const isLoading = useSelector(({isLoading}) => isLoading)
+    // console.log(games);
+
+    let randomPage = Math.floor(Math.random() * 500);
   
     useEffect(() => {
       if (!games.length) {

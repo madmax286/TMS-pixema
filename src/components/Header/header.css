@@ -7,4 +7,5 @@
     position: fixed;
     left: 18vw;
     background-color: black;
+    z-index: 1;
 }

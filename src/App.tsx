@@ -13,19 +13,19 @@ const App = () => {
       <>
         <Routes>
           <Route
-            path="/home"
+            path="/games/home"
             element={<GamesList />}
           />
           <Route
-            path="/trends"
+            path="/games/trends"
             element={<Trends />}
           />
           <Route
-            path="/favorites"
+            path="/games/favorites"
             element={<Favorites />}
           />
           <Route
-            path="/settings"
+            path="/games/settings"
             element={<Settings />}
           />
           <Route

@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 2%;
+    gap: 1% 2%;
 }
 
 .btn-show_more {

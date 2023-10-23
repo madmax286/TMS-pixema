@@ -1,22 +1,47 @@
 .game__card {
     display: flex;
     flex-direction: column;
-    width: 18.4%;
-    height: 36vh;
+    width: 32%;
+    height: 22vw;
     position: relative;
 
+    &:hover {
+        cursor: pointer;
+    }
+    .added-to-favorites {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        height: 28px;
+        border-radius: 6px;
+        background-color: #323537;
+        width: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        fill: #7B61FF;
+        z-index: 5;
+        
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0 30px 10px #7B61FF;
+        }
+    }
     h3, h4 {
-        font-size: .8rem;
+        font-size: 1rem;
         width: 100%;
         color: white;
         margin: 0;
-        margin-right: 3px;
     }
     h3 {
         font-size: 16px;
+        margin-right: 3px;
+    }
+    h4 {
+        padding: 0 5px;
     }
     .game__card-rating {
-        width: 39px;
+        width: auto;
         height: 28px;
         border-radius: 6px;
         background-color: #00A340;
@@ -27,30 +52,44 @@
         position: absolute;
         top: 20px;
         left: 20px;
-    }
-}
 
-.game__poster{
-    color: white;
-    height: 80%;
-    border-radius: 20px;
-    object-fit: cover;
-    object-position: 50% 50%;
-}
-
-.game__card-description {
-    margin-top: 2vh;
-    width: 100%;
-
-    .game__card-genres{
-        display: flex;
-        flex-wrap: wrap;
-        color: #AFB2B6;
-        width: 100%;
-
-        span {
-            font-size: 14px;
-            margin-right: 5px;
+        .trends-icon {
+            fill: white;
+            height: 80%;
         }
     }
+
+    .game__poster{
+        color: white;
+        height: 15vw;
+        border-radius: 20px;
+        object-fit: cover;
+        object-position: 50% 50%;
+
+        &:hover {
+            box-shadow: 0 0 30px 10px #7B61FF;
+        }    
+    }
+    
+    .game__card-description {
+        margin-top: 2vh;
+        width: 100%;
+    
+        .game__card-genres{
+            display: flex;
+            flex-wrap: wrap;
+            color: #AFB2B6;
+            width: 100%;
+    
+            span {
+                font-size: 14px;
+                margin-right: 5px;
+            }
+        }
+    }
+    .top {
+        background-color: #7B61FF;
+    }
 }
+
+

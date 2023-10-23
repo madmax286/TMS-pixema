@@ -6,7 +6,11 @@ const initialState = {
   games: [],
   game: [],
   screenshots: [],
+  trends: [],
+  rating: 'top',
   isLoading: false,
+  activeMenu: '',
+  page: 0
 };
 
 const rootReducer = (state = initialState, action: any) => {
@@ -27,6 +31,24 @@ const rootReducer = (state = initialState, action: any) => {
       return {
         ...state,
         screenshots: [action.payload],
+      };
+    }
+    case "SET_GAMES_TRENDS": {
+      return {
+        ...state,
+        trends: [...state.trends, ...action.payload],
+      };
+    }
+    case "SET_ACTIVE_MENU" : {
+      return {
+        ...state,
+        activeMenu: action.payload,
+      };
+    }
+    case "SET_PAGE" : {
+      return {
+        ...state,
+        page: action.payload,
       };
     }
     case 'SET_LOADING': {

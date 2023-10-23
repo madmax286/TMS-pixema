@@ -10,11 +10,13 @@ export const GET_GAMES = (randomPage?: any) => {
     dispatch({ type: "SET_LOADING" });
       try {
         // instance.get(`/${apiKey}&s=movie&page=${randomPage}`)
-        instance.get(`/games?${apiKeyRawg}&page_size=10&page=${randomPage}`)
+        instance.get(`/games?${apiKeyRawg}&page_size=12&page=${randomPage}`)
 
         .then((data) => {
           const games = data.data.results;
           console.log(games);
+          console.log(data.data.next);
+          
           
           dispatch({ type: "SET_GAMES", payload: games });
         })        
@@ -56,6 +58,43 @@ export const GET_GAME_SCREENSHOTS = (id: any) => {
         console.log('GET_GAME_SCREENSHOTS', screenshots);
         
         dispatch({ type: "SET_GAME_SCREENSHOTS", payload: screenshots });
+      })
+    } catch (err) {
+      console.log(err);
+    } finally {
+    // dispatch({ type: "SET_LOADING" });
+    }
+  }
+}
+
+export const GET_GAMES_TRENDS = (page: any) => {
+  return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
+    // dispatch({ type: "SET_LOADING" });
+    try {
+      instance.get(`/games?${apiKeyRawg}&ordering=-rating&page_size=12&page=${page}`)
+      .then((data) => {
+        const trends = data.data.results;
+        console.log('GET_GAMES_TRENDS', trends);
+        const page = data.data.next
+        dispatch({ type: "SET_PAGE", payload: page });
+        dispatch({ type: "SET_GAMES_TRENDS", payload: trends });
+      })
+    } catch (err) {
+      console.log(err);
+    } finally {
+    // dispatch({ type: "SET_LOADING" });
+    }
+  }
+}
+
+export const GET_NEXT_PAGE = (page: any) => {
+  return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
+    // dispatch({ type: "SET_LOADING" });
+    try {
+      instance.get(`${page}`)
+      .then((data) => {
+        const page = data.data.next
+        dispatch({ type: "SET_PAGE", payload: page });
       })
     } catch (err) {
       console.log(err);
