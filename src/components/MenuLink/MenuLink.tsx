@@ -13,14 +13,15 @@ const MenuLink = ({ text }: { text: string }) => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const navigate = useNavigate();
   const activeMenu = useSelector(({ activeMenu }) => activeMenu);
+  const openFliter = useSelector(({openFliter}) => openFliter)
 
   return (
     <nav
       onClick={() => {
         dispatch({ type: "SET_ACTIVE_MENU", payload: text });
-        navigate(`${`/games/${text.toLocaleLowerCase()}`}`);
+        navigate(`/games/${text.toLocaleLowerCase()}`);       
       }}
-      className={`menu__link menu__home ${activeMenu === text ? "active" : ""}`}
+      className={`menu__link menu__home ${(activeMenu === text && !openFliter) ? "active" : ""}`}
     >
       {text === "Home" ? (
         <HomeIcon />

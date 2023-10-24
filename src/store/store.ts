@@ -14,7 +14,8 @@ const initialState = {
   page: 0,
   nextSearch: '',
   search: [],
-  onFocus: false
+  onFocus: false,
+  openFliter: false
 };
 
 const rootReducer = (state: any = initialState, action: any) => {
@@ -53,6 +54,12 @@ const rootReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         activeMenu: action.payload,
+      };
+    }
+    case "SET_OPEN_FILTER" : {
+      return {
+        ...state,
+        openFliter: action.payload,
       };
     }
     case "SET_PAGE" : {

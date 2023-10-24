@@ -10,7 +10,6 @@ export const GET_GAMES = (randomPage?: any) => {
         .then((data) => {
           const games = data.data.results;
           console.log(games);
-          console.log(data.data.next);
           dispatch({ type: "SET_GAMES", payload: games });
         })        
       } catch (err) {
@@ -75,6 +74,7 @@ export const GET_GAMES_TRENDS = (page: number) => {
       instance.get(`/games?${apiKeyRawg}&ordering=-rating&page_size=12&page=${page}`)
       .then((data) => {
         const trends = data.data.results;
+        console.log(trends);        
         const page = data.data.next
         dispatch({ type: "SET_PAGE", payload: page });
         dispatch({ type: "SET_GAMES_TRENDS", payload: trends });
@@ -92,12 +92,9 @@ export const GET_SEARCH = (search: any, navigate?: any) => {
       await instance.get(`/games?${apiKeyRawg}&page_size=12&search=${search}`)
       .then((data) => {
         const searchResult = data.data.results;        
-        console.log(searchResult);
         dispatch({ type: "SET_SEARCH", payload: searchResult });
-
         const nextSearchResult = data.data.next
         dispatch({ type: "SET_NEXT_SEARCH", payload: nextSearchResult });
-        console.log(nextSearchResult);
         navigate(`/games/search/?search=${search}`);
       })
     } catch (err) {

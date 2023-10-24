@@ -53,7 +53,9 @@ const SearchResults = () => {
                 )
               )}
           </div>
-          {nextSearch !== null && <ButtonShowMore onClick={onClick} />}
+          {search.length && nextSearch !== null && (
+            <ButtonShowMore onClick={onClick} />
+          )}
         </div>
       </PageTemplate>
     </div>
