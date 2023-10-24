@@ -94,3 +94,6 @@
 .game-content .game__description .bookmark:hover {
   fill: #7B61FF;
 }
+.game-content .game__description a {
+  margin-bottom: 20px;
+}

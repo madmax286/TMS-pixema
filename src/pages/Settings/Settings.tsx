@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageTemplate } from "..";
+import { PageTemplate } from "../../components";
 import './settings.css'
 
 const Settings = () => {

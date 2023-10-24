@@ -17,8 +17,8 @@ const MenuLink = ({ text }: { text: string }) => {
   return (
     <nav
       onClick={() => {
-        navigate(`${`/games/${text.toLocaleLowerCase()}`}`);
         dispatch({ type: "SET_ACTIVE_MENU", payload: text });
+        navigate(`${`/games/${text.toLocaleLowerCase()}`}`);
       }}
       className={`menu__link menu__home ${activeMenu === text ? "active" : ""}`}
     >

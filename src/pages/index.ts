@@ -1,0 +1,6 @@
+export { default as Home } from './Home/Home'
+export { default as Trends } from './Trends/Trends'
+export { default as Favorites } from '../pages/Favorites/Favorites'
+export { default as Settings } from './Settings/Settings'
+export { default as SelectedGame } from './SelectedGame/SelectedGame'
+export { default as SearchResults } from './SearchResults/SearchResults'

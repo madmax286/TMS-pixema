@@ -1,11 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
+import { Player } from 'video-react';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { GET_GAME_SCREENSHOTS, GET_SELECTED_GAME } from "../../actions/actions";
+import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
 import { IGame } from "../../interfaces";
-import PageTemplate from "../PageTemplate/PageTemplate";
+import PageTemplate from "../../components/PageTemplate/PageTemplate";
 import { ReactComponent as TrendsIcon } from "../../icons/Trends.svg";
 import { ReactComponent as Bookmark } from "../../icons/Bookmark.svg";
 import "./selectedGame.css";
@@ -17,12 +18,12 @@ const SelectedGame = () => {
   const ratingTop = useSelector(({ rating }) => rating);
   const game = useSelector(({ game }) => game);
   const screenshots = useSelector(({ screenshots }) => screenshots);
+  const trailer = useSelector(({ trailer }) => trailer); 
 
   useEffect(() => {
     if (!game.length) dispatch(GET_SELECTED_GAME(id, slug, navigate));
     dispatch(GET_GAME_SCREENSHOTS(id));
-    // console.log(game);
-    // console.log(screenshots);
+    dispatch(GET_GAME_TRAILER(id))
   }, []);
 
   const bookmark = () => {
@@ -30,7 +31,6 @@ const SelectedGame = () => {
     for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i))
     return arr.includes(`${id}`)
   }
-  // console.log(bookmark(), id);
   
   const addBookmark = () => {    
     if (bookmark()) localStorage.removeItem(`${id}`)
@@ -72,10 +72,10 @@ const SelectedGame = () => {
                   <div className="game__description">
                     <div className="game__genres">
                       <h5>Genres: </h5>
-                      {genres.length &&
+                      {genres.length ?
                         genres.map((e: any, id: number) => (
                           <h5 key={id}>{e.name}</h5>
-                        ))}
+                        )) : ''}
                     </div>
                     <h1>{name}</h1>
                     <div className="rating-and-favorites">
@@ -93,7 +93,9 @@ const SelectedGame = () => {
                       </div>
                       <button
                         onClick={addBookmark}
-                        className={`add-to-favorites ${bookmark() ? 'bookmark' : ''}`}
+                        className={`add-to-favorites ${
+                          bookmark() ? "bookmark" : ""
+                        }`}
                         type="button"
                       >
                         <Bookmark />
@@ -109,6 +111,12 @@ const SelectedGame = () => {
                     </div>
                     <h4>Released: {released}</h4>
                     <a href={website}>{website}</a>
+                    {trailer.length &&
+                      trailer[0].map((e: any, id: number) => (
+                        <Player key={id} poster={e.preview}>
+                          <source src={e.data.max} />
+                        </Player>
+                      ))}
                   </div>
                 </main>
               )

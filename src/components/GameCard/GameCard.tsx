@@ -13,15 +13,7 @@ const GameCard: FC<IGame> = ({background_image, name, rating, slug, id, genres})
   const navigate = useNavigate();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const ratingTop = useSelector(({rating}) => rating)
-
-  // useEffect(() => {
-  //   window.addEventListener("storage", (e) => {
-  //     // if (e.key === "access" && e.newValue === null) {
-  //     //   navigate("/signIn");
-  //     // }
-  //   });
-
-  // }, []);
+  
   const bookmark = () => {
     let arr = []
     for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i))
@@ -56,8 +48,8 @@ const GameCard: FC<IGame> = ({background_image, name, rating, slug, id, genres})
       <div className="game__card-description">
         <h3>{name}</h3>
         <div className="game__card-genres">
-          {genres.length &&
-            genres.map((e: any, id: number) => <span key={id}>{e.name}</span>)}
+          {genres.length ?
+            genres.map((e: any, id: number) => <span key={id}>{e.name}</span>) : ''}
         </div>
       </div>
     </div>

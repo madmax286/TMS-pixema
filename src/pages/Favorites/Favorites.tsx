@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { GameCard, PageTemplate } from '..'
+import { GameCard, PageTemplate } from '../../components'
 import { IGame } from '../../interfaces';
 import './favorites.css'
 

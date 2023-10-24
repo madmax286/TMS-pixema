@@ -6,14 +6,18 @@ const initialState = {
   games: [],
   game: [],
   screenshots: [],
+  trailer: [],
   trends: [],
   rating: 'top',
   isLoading: false,
   activeMenu: '',
-  page: 0
+  page: 0,
+  nextSearch: '',
+  search: [],
+  onFocus: false
 };
 
-const rootReducer = (state = initialState, action: any) => {
+const rootReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
     case "SET_GAMES": {
       return {
@@ -31,6 +35,12 @@ const rootReducer = (state = initialState, action: any) => {
       return {
         ...state,
         screenshots: [action.payload],
+      };
+    }
+    case "SET_GAME_TRAILER": {
+      return {
+        ...state,
+        trailer: [action.payload],
       };
     }
     case "SET_GAMES_TRENDS": {
@@ -51,10 +61,28 @@ const rootReducer = (state = initialState, action: any) => {
         page: action.payload,
       };
     }
+    case "SET_NEXT_SEARCH" : {
+      return {
+        ...state,
+        nextSearch: action.payload,
+      };
+    }
+    case "SET_SEARCH" : {
+      return {
+        ...state,
+        search: action.payload,
+      };
+    }
     case 'SET_LOADING': {
       return {
         ...state,
         isLoading: !state.isLoading,
+      };
+    }
+    case 'SET_FOCUS': {
+      return {
+        ...state,
+        onFocus: action.payload,
       };
     }
     default:
@@ -63,7 +91,6 @@ const rootReducer = (state = initialState, action: any) => {
 };
 
 const store = createStore(
-  //@ts-expect-error
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );

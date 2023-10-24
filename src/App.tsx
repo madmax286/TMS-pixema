@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Route, Routes, useNavigate, useLocation, Navigate} from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { GamesList, Trends, Favorites, Settings, SelectedGame } from "./components";
+import { Home, Trends, Favorites, Settings, SelectedGame, SearchResults } from "./pages";
 
 const App = () => {
   const location = useLocation();
@@ -12,28 +12,14 @@ const App = () => {
     <div>
       <>
         <Routes>
-          <Route
-            path="/games/home"
-            element={<GamesList />}
-          />
-          <Route
-            path="/games/trends"
-            element={<Trends />}
-          />
-          <Route
-            path="/games/favorites"
-            element={<Favorites />}
-          />
-          <Route
-            path="/games/settings"
-            element={<Settings />}
-          />
-          <Route
-            path="/game/:id/:slug"
-            element={<SelectedGame />}
-          />
+          <Route path="/games/home" element={<Home />} />
+          <Route path="/games/trends" element={<Trends />} />
+          <Route path="/games/favorites" element={<Favorites />} />
+          <Route path="/games/settings" element={<Settings />} />
+          <Route path="/game/:id/:slug" element={<SelectedGame />} />
+          <Route path="/games/search/" element={<SearchResults />} />
         </Routes>
-        {location.pathname === "/" && <Navigate to="home" />}
+        {location.pathname === "/" && <Navigate to="games/home" />}
       </>
     </div>
   );

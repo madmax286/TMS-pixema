@@ -1,0 +1,11 @@
+.btn_show-more {
+    width: 10vw;
+    height: 40px;
+    align-self: center;
+    color: white;
+    font-weight: 500;
+    background-color: #323537;
+    border-radius: 40px;
+    border: none;
+    margin-top: 24px;
+}

@@ -9,4 +9,13 @@ export interface IGame {
     platforms?: any,
     released?: string
     website?: string
+    // value?: string,
+}
+
+export interface IInput {
+    label?: string,
+    placeholder?: string,
+    type: 'search' | 'text' | 'textarea' | 'password' | 'email',
+    value: string,
+    onChange: (value: string) => void,
 }
