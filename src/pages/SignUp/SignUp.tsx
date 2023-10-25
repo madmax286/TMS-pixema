@@ -14,6 +14,23 @@ const SignUp = () => {
 
   // [{ name: name, email: email, password: password, token: apiKeyRawg }];
 
+  const onClickSignUp = () => {
+    if (
+      name.length > 1 &&
+      email.length > 1 &&
+      password.length > 1 &&
+      password === confirmPassword
+    ) {
+      navigate("/games/home");
+      sessionStorage.setItem("username", `${name}`);
+      sessionStorage.setItem("email", `${email}`);
+      sessionStorage.setItem("password", `${password}`);
+      sessionStorage.setItem("token", `${apiKeyRawg}`);
+    } else {
+      alert("Incorrect input data");
+    }
+  };
+
   return (
     <div>
       <PageTemplateSign>
@@ -50,13 +67,7 @@ const SignUp = () => {
           <button
             type="button"
             className="btn-signin"
-            onClick={() => {
-              navigate("/games/home");
-              sessionStorage.setItem("username", (`${name}`));
-              sessionStorage.setItem("email", (`${email}`));
-              sessionStorage.setItem("password", (`${password}`));
-              sessionStorage.setItem("token", (`${apiKeyRawg}`));
-            }}
+            onClick={onClickSignUp}
           >
             Sign Un
           </button>

@@ -19,6 +19,8 @@ const GameCard: FC<IGame> = ({background_image, name, rating, slug, id, genres})
     for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i))
     return arr.includes(`${id}`)
   }
+  
+  const token = sessionStorage.getItem("token");
 
   return (
     <div className="game__card">
@@ -34,7 +36,7 @@ const GameCard: FC<IGame> = ({background_image, name, rating, slug, id, genres})
         {rating > 4 ? <TrendsIcon className="trends-icon" /> : ""}
         {rating}
       </h4>
-      {bookmark() && (
+      {token && bookmark() && (
         <div
           onClick={() => {
             localStorage.removeItem(`${id}`);

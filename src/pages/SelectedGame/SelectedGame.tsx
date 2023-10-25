@@ -38,6 +38,8 @@ const SelectedGame = () => {
     window.location.reload() 
   };
 
+  const token = sessionStorage.getItem("token");
+
   return (
     <>
       {slug && id && (
@@ -99,9 +101,7 @@ const SelectedGame = () => {
                       </div>
                       <button
                         onClick={addBookmark}
-                        className={`add-to-favorites ${
-                          bookmark() ? "bookmark" : ""
-                        }`}
+                        className={`add-to-favorites ${token && `${bookmark() ? "bookmark" : ""} `} `}
                         type="button"
                       >
                         <Bookmark />

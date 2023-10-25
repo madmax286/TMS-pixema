@@ -14,6 +14,13 @@ const SignIn = () => {
   const userEmail = sessionStorage.getItem("email");
   const userPassword = sessionStorage.getItem("password");
 
+  const onClickSignIn = () => {
+    if (email === userEmail && password === userPassword) {
+      sessionStorage.setItem("token", `${apiKeyRawg}`);
+      navigate("/games/home");
+    } else alert("Incorrect Email or Password");
+  };
+
   return (
     <div>
       <PageTemplateSign>
@@ -34,18 +41,7 @@ const SignIn = () => {
             onChange={setPassword}
           />
           <a href="#">Forgot password?</a>
-          <button
-            type="button"
-            className="btn-signin"
-            onClick={() => {
-              if ((email === userEmail) && (password === userPassword)) {
-                sessionStorage.setItem("token", (`${apiKeyRawg}`));
-                navigate("/games/home")
-              } 
-              else alert('Incorrect Email or Password')
-            }
-            } 
-          >
+          <button type="button" className="btn-signin" onClick={onClickSignIn}>
             Sign In
           </button>
           <div className="signup">

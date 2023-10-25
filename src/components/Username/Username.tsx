@@ -6,12 +6,13 @@ const Username = () => {
   const navigate = useNavigate();
 
   const token = sessionStorage.getItem("token");
+  const username = sessionStorage.getItem("username");
 
   return (
     <div className="username">
       {token ? (
         <>
-          <span>Maxim</span>
+          <span>{username}</span>
           <button
             onClick={() => {
               sessionStorage.removeItem("token");
