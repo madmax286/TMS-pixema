@@ -1,0 +1,109 @@
+.game-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 152px 3vw 10vh 18vw;
+}
+.game-content .game__screenshots-container {
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+}
+.game-content .game__screenshots-container img {
+  margin-bottom: 2%;
+  border-radius: 10px;
+}
+.game-content .game__screenshots-container .game__screenshots {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2%;
+  padding-bottom: 20px;
+}
+.game-content .game__screenshots-container .game__screenshots .game__screenshots-img {
+  border-radius: 10px;
+}
+.game-content .game__screenshots-container .game__screenshots .game__screenshots-img:hover {
+  cursor: pointer;
+  box-shadow: 0 0 40px 10px #7B61FF;
+}
+.game-content .game__description {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.game-content .game__description .rating-and-favorites {
+  display: flex;
+}
+.game-content .game__description .add-to-favorites {
+  background-color: #323537;
+  border-radius: 6px;
+  border: none;
+  width: 7vw;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #AFB2B6;
+}
+.game-content .game__description .add-to-favorites:hover {
+  fill: white;
+}
+.game-content .game__description .game__genres, .game-content .game__description a {
+  display: flex;
+  color: #AFB2B6;
+}
+.game-content .game__description .game__genres h5, .game-content .game__description a h5 {
+  margin-right: 2%;
+  font-weight: 500;
+}
+.game-content .game__description .game__platforms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  color: #AFB2B6;
+}
+.game-content .game__description .game__platforms h5 {
+  margin-right: 2%;
+  font-weight: 500;
+}
+.game-content .game__description h1, .game-content .game__description h4 {
+  margin: 20px 0 20px 0;
+}
+.game-content .game__description h4 {
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.game-content .game__description .game__description-rating {
+  width: 7vw;
+  height: 30px;
+  border-radius: 6px;
+  background-color: #00A340;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-right: 2vw;
+}
+.game-content .game__description .game__description-rating .trends-icon {
+  fill: white;
+  height: 80%;
+}
+.game-content .game__description .top {
+  background-color: #7B61FF;
+}
+.game-content .game__description .bookmark {
+  fill: #7B61FF;
+}
+.game-content .game__description .bookmark:hover {
+  fill: #7B61FF;
+}
+.game-content .game__description a {
+  margin-bottom: 20px;
+}

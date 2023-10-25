@@ -1,5 +1,6 @@
 import React, { ReactNode, FC } from 'react'
-import { Header, Menu } from "../../components";
+import { useSelector } from 'react-redux';
+import { Header, Loader, Menu } from "../../components";
 import './pageTemplate.css'
 
 interface IPageTemplate {
@@ -7,11 +8,13 @@ interface IPageTemplate {
 }
 
 const PageTemplate: FC<IPageTemplate> = ({ children }) => {
+  const isLoading = useSelector(({isLoading}) => isLoading)
+  
   return (
     <div className="wrapper-container">
       <Menu />
       <Header />
-      {children}
+      {isLoading ? <Loader/> : children}
     </div>
   );
 };

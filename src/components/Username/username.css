@@ -4,6 +4,6 @@
     font-weight: 600;
     height: 56px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }

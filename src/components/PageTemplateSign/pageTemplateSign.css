@@ -1,0 +1,20 @@
+.wrapper__sign {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    position: relative;
+}
+.background-image {
+    /* width: 50vh;
+    height: 50vw; */
+    position: absolute;
+    right: 0;
+    z-index: -1;
+    object-fit: cover;
+    opacity: .3;
+}
+.logo-image {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}

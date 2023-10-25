@@ -3,31 +3,151 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const initialState = {
-  movies: [],
-  test: [
-    {
-        Title: "The Lego Movie",
-        Year: "2014",
-        imdbID: "tt1490017",
-        Type: "movie",
-        Poster: "https://m.media-amazon.com/images/M/MV5BMTg4MDk1ODExN15BMl5BanBnXkFtZTgwNzIyNjg3MDE@._V1_SX300.jpg"
-    },
-    {
-        Title: "The Simpsons Movie",
-        Year: "2007",
-        imdbID: "tt0462538",
-        Type: "movie",
-        Poster: "https://m.media-amazon.com/images/M/MV5BNjc4NmQyNGUtMDg4NS00ZTZkLWI3ODQtMGJmYThiYjQxNGRiXkEyXkFqcGdeQXVyMTA0MTM5NjI2._V1_SX300.jpg"
-    },
-]
+  games: [],
+  game: [],
+  screenshots: [],
+  trailer: [],
+  genres: [],
+  platforms: [],
+  trends: [],
+  rating: 'top',
+  isLoading: false,
+  activeMenu: '',
+  nextPageTrends: '',
+  nextSearch: '',
+  nextPage: '',
+  search: [],
+  onFocus: false,
+  openFliter: false,
+  filter: [],
+  nextFilter: '',
+  genreID: '',
+  platformID: '',
+  selectedGenre: '',
+  selectedPlatform: ''
 };
 
-const rootReducer = (state = initialState, action: any) => {
+const rootReducer = (state: any = initialState, action: any) => {
   switch (action.type) {
-    case "SET_MOVIES": {
+    case "SET_GAMES": {
       return {
         ...state,
-        movies: action.payload,
+        games: [...state.games, ...action.payload],
+      };
+    }
+    case "SET_SELECTED_GAME": {
+      return {
+        ...state,
+        game: [action.payload],
+      };
+    }
+    case "SET_GAME_SCREENSHOTS": {
+      return {
+        ...state,
+        screenshots: [action.payload],
+      };
+    }
+    case "SET_GAME_TRAILER": {
+      return {
+        ...state,
+        trailer: [action.payload],
+      };
+    }
+    case "SET_GENRES": {
+      return {
+        ...state,
+        genres: action.payload,
+      };
+    }
+    case "SET_PLATFORMS": {
+      return {
+        ...state,
+        platforms: action.payload,
+      };
+    }
+    case "SET_GAMES_TRENDS": {
+      return {
+        ...state,
+        trends: [...state.trends, ...action.payload],
+      };
+    }
+    case "SET_ACTIVE_MENU" : {
+      return {
+        ...state,
+        activeMenu: action.payload,
+      };
+    }
+    case "SET_OPEN_FILTER" : {
+      return {
+        ...state,
+        openFliter: action.payload,
+      };
+    }
+    case "SET_NEXT_PAGE_TRENDS" : {
+      return {
+        ...state,
+        nextPageTrends: action.payload,
+      };
+    }
+    case "SET_NEXT_SEARCH" : {
+      return {
+        ...state,
+        nextSearch: action.payload,
+      };
+    }
+    case "SET_SEARCH" : {
+      return {
+        ...state,
+        search: action.payload,
+      };
+    }
+    case "SET_FILTER_RESULTS" : {
+      return {
+        ...state,
+        // filter: [...action.payload],
+        filter: [...state.filter.concat(action.payload)],
+      };
+    }
+    case "SET_NEXT_FILTER_PAGE" : {
+      return {
+        ...state,
+        nextFilter: action.payload,
+      };
+    }
+    case 'SET_LOADING': {
+      return {
+        ...state,
+        isLoading: !state.isLoading,
+      };
+    }
+    case 'SET_FOCUS': {
+      return {
+        ...state,
+        onFocus: action.payload,
+      };
+    }
+    case "SET_GENRE_ID" : {
+      return {
+        ...state,
+        genreID: action.payload,
+      };
+    }    
+    case "SET_SELECTED_GENRE" : {
+      return {
+        ...state,
+        selectedGenre: action.payload,
+      };
+    }
+    case "SET_SELECTED_PLATFORM" : {
+      return {
+        ...state,
+        selectedPlatform: action.payload,
+      };
+    }
+    case "SET_PLATFORM_ID" : {
+      return {
+        ...state,
+        platformID: action.payload,
       };
     }
     default:

@@ -1,0 +1,14 @@
+.games-layout {
+    width: calc(100% - 18vw);
+    /* height: calc(100% - 40px); */
+    display: flex;
+    flex-direction: column;
+    margin: 152px 4vw 40px 18vw;
+}
+
+.games-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1% 2%;
+}

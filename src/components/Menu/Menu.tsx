@@ -1,36 +1,23 @@
-import React from 'react'
-import {ReactComponent as HomeIcon} from '../../icons/Home.svg'
-import {ReactComponent as TrendsIcon} from '../../icons/Trends.svg'
-import {ReactComponent as FavoritesIcon} from '../../icons/Favorites.svg'
-import {ReactComponent as SettingsIcon} from '../../icons/Settings.svg'
-import LogoIcon from '../../icons/Logo.svg'
-import './menu.css'
+import React, { useState } from "react";
+import LogoIcon from "../../assets/Logo.svg";
+import MenuLink from "../MenuLink/MenuLink";
+import "./menu.css";
 
 const Menu = () => {
+  const token = sessionStorage.getItem("token");
+
   return (
-    <div className='menu__wrapper'>
+    <aside className="menu__wrapper">
       <div className="menu__logo">
         <img src={LogoIcon} alt="pixema" />
       </div>
-      <div className="menu__link menu__home">
-        <HomeIcon className='home-icon' />
-        <span>Home</span>
-      </div>
-      <div className="menu__link menu__trends">
-      <TrendsIcon className='trends-icon' />
-        <span>Trends</span>
-      </div>
-      <div className="menu__link menu__favorites">
-      <FavoritesIcon className='favorites-icon' />
-        <span>Favorites</span>
-      </div>
-      <div className="menu__link menu__settings">
-      <SettingsIcon className='settings-icon' />
-        <span>Settings</span>
-      </div>
-      <span className='rights-reserved'>© All Rights Reserved</span>
-    </div>
-  )
-}
+      <MenuLink text="Home" />
+      <MenuLink text="Trends" />
+      {token &&<MenuLink text="Favorites" />}
+      <MenuLink text="Settings" />
+      <span className="rights-reserved">© All Rights Reserved</span>
+    </aside>
+  );
+};
 
-export default Menu
+export default Menu;
