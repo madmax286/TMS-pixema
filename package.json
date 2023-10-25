@@ -1,7 +1,6 @@
 {
   "name": "pixema",
   "version": "0.1.0",
-  "homepage": "https://madmax286.github.io/TMS-pixema",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

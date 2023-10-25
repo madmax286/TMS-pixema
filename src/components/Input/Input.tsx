@@ -11,7 +11,7 @@ interface IInput {
 const Input: FC<IInput> = ({label, placeholder, type, value, onChange}) => {
   
   return (
-    <div>
+    <div className='input_container right'>
       <span className="label">{label}</span>
       <input
         // ref={inputRef}
