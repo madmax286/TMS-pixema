@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.bcdee36b.css",
-    "main.js": "/static/js/main.f4ba2515.js",
-    "static/media/Background.jpg": "/static/media/Background.e69de0423f86049d7c29.jpg",
-    "static/media/Logo.svg": "/static/media/Logo.ce9379de82dd3c49c31dcb11c4409dd2.svg",
-    "static/media/Settings.svg": "/static/media/Settings.666ccc021629754a786b1939dba58431.svg",
-    "static/media/Trends.svg": "/static/media/Trends.278b55aacf2eaf68d4acbb9896435dcb.svg",
-    "static/media/Home.svg": "/static/media/Home.9a32a1ac84d1df6cdd31723a4aafdd02.svg",
-    "static/media/Favorites.svg": "/static/media/Favorites.d82b14252aefe2884e82b3052e4af255.svg",
-    "static/media/Bookmark.svg": "/static/media/Bookmark.a8c5d51b1539230e19088ca9e39b55ff.svg",
-    "static/media/Filter.svg": "/static/media/Filter.f605c47b003b36301365881a67982b58.svg",
-    "index.html": "/index.html",
-    "main.bcdee36b.css.map": "/static/css/main.bcdee36b.css.map",
-    "main.f4ba2515.js.map": "/static/js/main.f4ba2515.js.map"
+    "main.css": "/TMS-pixema/static/css/main.bcdee36b.css",
+    "main.js": "/TMS-pixema/static/js/main.bafbf186.js",
+    "static/media/Background.jpg": "/TMS-pixema/static/media/Background.e69de0423f86049d7c29.jpg",
+    "static/media/Logo.svg": "/TMS-pixema/static/media/Logo.ce9379de82dd3c49c31dcb11c4409dd2.svg",
+    "static/media/Settings.svg": "/TMS-pixema/static/media/Settings.666ccc021629754a786b1939dba58431.svg",
+    "static/media/Trends.svg": "/TMS-pixema/static/media/Trends.278b55aacf2eaf68d4acbb9896435dcb.svg",
+    "static/media/Home.svg": "/TMS-pixema/static/media/Home.9a32a1ac84d1df6cdd31723a4aafdd02.svg",
+    "static/media/Favorites.svg": "/TMS-pixema/static/media/Favorites.d82b14252aefe2884e82b3052e4af255.svg",
+    "static/media/Bookmark.svg": "/TMS-pixema/static/media/Bookmark.a8c5d51b1539230e19088ca9e39b55ff.svg",
+    "static/media/Filter.svg": "/TMS-pixema/static/media/Filter.f605c47b003b36301365881a67982b58.svg",
+    "index.html": "/TMS-pixema/index.html",
+    "main.bcdee36b.css.map": "/TMS-pixema/static/css/main.bcdee36b.css.map",
+    "main.bafbf186.js.map": "/TMS-pixema/static/js/main.bafbf186.js.map"
   },
   "entrypoints": [
     "static/css/main.bcdee36b.css",
-    "static/js/main.f4ba2515.js"
+    "static/js/main.bafbf186.js"
   ]
 }
