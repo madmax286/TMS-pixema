@@ -141,15 +141,29 @@ export const GET_PLATFORMS = () => {
   }
 }
 
-export const GET_FILTER_RESULTS = (platformID: any, genreID: any) => {
+export const GET_FILTER_RESULTS = (
+  platformID: any,
+  genreID: any,
+  name: any,
+  dateFrom: any,
+  dateTo: any,
+  sortRating: any
+) => {
   return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
     dispatch({ type: "SET_LOADING" });
     try {
       await instance
-        .get(`/games?${apiKeyRawg}${platformID ? `&platforms=${platformID}` : ''}${genreID ? `&genres=${genreID}` : ''}`)
+        .get(
+          `/games?${apiKeyRawg}${platformID ? `&platforms=${platformID}` : ""}${genreID ? `&genres=${genreID}` : ""}${name ? `&search=${name}` : ""}&dates=${dateFrom ? `${dateFrom}` : '2000'},${dateTo ? `${dateTo}` : '2024'}&ordering=-${sortRating}`)
         .then((data) => {
           const filter = data.data.results;
+          console.log(platformID, genreID, name, dateFrom, dateTo, sortRating);
+          console.log(data.data);
+
+          const next = data.data.next;
+          
           dispatch({ type: "SET_FILTER_RESULTS", payload: filter });
+          dispatch({ type: "SET_NEXT_FILTER_PAGE", payload: next });
         });
     } catch (err) {
       console.log(err);

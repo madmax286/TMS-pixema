@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GET_SELECTED_GAME } from '../../actions/actions';
-import { ReactComponent as TrendsIcon } from "../../icons/Trends.svg";
-import { ReactComponent as Bookmark } from "../../icons/Bookmark.svg";
+import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
+import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
 import { IGame } from '../../interfaces';
 import './gameCard.css'
 

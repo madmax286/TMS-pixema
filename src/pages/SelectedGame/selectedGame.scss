@@ -59,10 +59,19 @@
                 fill: white;
             }
         }
-        .game__genres, .game__platforms, a {
+        .game__genres, a {
             display: flex;
             color: #AFB2B6;
     
+            h5 {
+                margin-right: 2%;
+                font-weight: 500;
+            }
+        }
+        .game__platforms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            color: #AFB2B6;
             h5 {
                 margin-right: 2%;
                 font-weight: 500;

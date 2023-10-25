@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import { AnyAction } from "redux";
-import { useNavigate } from "react-router-dom";
-import LogoIcon from "../../icons/Logo.svg";
-import "./menu.css";
+import LogoIcon from "../../assets/Logo.svg";
 import MenuLink from "../MenuLink/MenuLink";
+import "./menu.css";
 
 const Menu = () => {
+  const token = sessionStorage.getItem("token");
+
   return (
     <aside className="menu__wrapper">
       <div className="menu__logo">
@@ -15,7 +13,7 @@ const Menu = () => {
       </div>
       <MenuLink text="Home" />
       <MenuLink text="Trends" />
-      <MenuLink text="Favorites" />
+      {token &&<MenuLink text="Favorites" />}
       <MenuLink text="Settings" />
       <span className="rights-reserved">© All Rights Reserved</span>
     </aside>

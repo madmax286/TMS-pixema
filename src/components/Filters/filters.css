@@ -32,6 +32,9 @@
   border: solid 2px #323537;
   color: #80858B;
 }
+.btn-sort .clicked {
+  background-color: #323537;
+}
 
 .input-name {
   height: 5vh;

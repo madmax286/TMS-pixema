@@ -53,11 +53,20 @@
 .game-content .game__description .add-to-favorites:hover {
   fill: white;
 }
-.game-content .game__description .game__genres, .game-content .game__description .game__platforms, .game-content .game__description a {
+.game-content .game__description .game__genres, .game-content .game__description a {
   display: flex;
   color: #AFB2B6;
 }
-.game-content .game__description .game__genres h5, .game-content .game__description .game__platforms h5, .game-content .game__description a h5 {
+.game-content .game__description .game__genres h5, .game-content .game__description a h5 {
+  margin-right: 2%;
+  font-weight: 500;
+}
+.game-content .game__description .game__platforms {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  color: #AFB2B6;
+}
+.game-content .game__description .game__platforms h5 {
   margin-right: 2%;
   font-weight: 500;
 }

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { ReactComponent as HomeIcon } from "../../icons/Home.svg";
-import { ReactComponent as TrendsIcon } from "../../icons/Trends.svg";
-import { ReactComponent as FavoritesIcon } from "../../icons/Favorites.svg";
-import { ReactComponent as SettingsIcon } from "../../icons/Settings.svg";
+import { ReactComponent as HomeIcon } from "../../assets/Home.svg";
+import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
+import { ReactComponent as FavoritesIcon } from "../../assets/Favorites.svg";
+import { ReactComponent as SettingsIcon } from "../../assets/Settings.svg";
 import "./menuLink.css";
 
 const MenuLink = ({ text }: { text: string }) => {

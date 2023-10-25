@@ -7,8 +7,8 @@ import { ThunkDispatch } from "redux-thunk";
 import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
 import { IGame } from "../../interfaces";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
-import { ReactComponent as TrendsIcon } from "../../icons/Trends.svg";
-import { ReactComponent as Bookmark } from "../../icons/Bookmark.svg";
+import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
+import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
 import "./selectedGame.css";
 
 const SelectedGame = () => {
@@ -18,7 +18,7 @@ const SelectedGame = () => {
   const ratingTop = useSelector(({ rating }) => rating);
   const game = useSelector(({ game }) => game);
   const screenshots = useSelector(({ screenshots }) => screenshots);
-  const trailer = useSelector(({ trailer }) => trailer); 
+  const trailer = useSelector(({ trailer }) => trailer);
 
   useEffect(() => {
     if (!game.length) dispatch(GET_SELECTED_GAME(id, slug, navigate));

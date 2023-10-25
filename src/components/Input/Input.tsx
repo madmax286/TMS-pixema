@@ -1,22 +1,27 @@
-import React, { FC, useEffect, useState } from "react";
-import { IInput } from "../../interfaces";
-import "./input.css";
+import React, {FC, useState, useRef, useEffect} from 'react'
+
+interface IInput {
+    label?: string,
+    placeholder?: string,
+    type: 'text' | 'textarea' | 'password' | 'email' | 'file',
+    value: string,
+    onChange: (value: string) => void,
+}
 
 const Input: FC<IInput> = ({label, placeholder, type, value, onChange}) => {
+  
   return (
-    <>
-      {/* <div className="input__search-wrapper">
-        <input
-          type={type}
-          placeholder={placeholder}
-          name={value}
-          value={value}
-          onChange={(e) => onChange(e.currentTarget.value)}
-        />
-      </div> */}
-      {/* <h1>{`Search results '${value}'`}</h1> */}
-    </>
+    <div>
+      <span className="label">{label}</span>
+      <input
+        // ref={inputRef}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.currentTarget.value)}
+      />
+    </div>
   );
-};
+}
 
-export default Input;
+export default Input

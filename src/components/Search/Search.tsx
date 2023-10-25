@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GET_GENRES, GET_PLATFORMS, GET_SEARCH } from '../../actions/actions';
-import { ReactComponent as FilterIcon } from "../../icons/Filter.svg";
+import { ReactComponent as FilterIcon } from "../../assets/Filter.svg";
 import Filters from '../Filters/Filters';
 import './search.css'
 

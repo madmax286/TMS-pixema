@@ -2,22 +2,25 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { GET_FILTER_RESULTS } from "../../actions/actions";
+import instance from "../../axiosConfig";
 import { ButtonShowMore, GameCard, PageTemplate } from "../../components";
 import { IGame } from "../../interfaces";
 
 const FilterPage = () => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const filter = useSelector(({ filter }) => filter);
-  const platformID = useSelector(({ platformID }) => platformID);
-  const genreID = useSelector(({ genreID }) => genreID);
+  const nextFilter = useSelector(({ nextFilter }) => nextFilter);
 
-  useEffect(() => {
-    console.log(filter);
-    if (!filter.length) {
-      dispatch(GET_FILTER_RESULTS(platformID, genreID))
-    }
-  },[])
+  const addFilterResults = () => {    
+    instance.get(nextFilter).then((data) => {
+      const nextPage = data.data.next;
+      dispatch({ type: "SET_NEXT_FILTER_PAGE", payload: nextPage });
+
+      const nextResult = data.data.results;
+      if (nextResult.length)
+        dispatch({ type: "SET_FILTER_RESULTS", payload: nextResult });
+    });
+  };
 
   return (
     <div>
@@ -46,9 +49,9 @@ const FilterPage = () => {
                 )
               )}
           </div>
-          {/* {search.length && nextSearch !== null && (
-            <ButtonShowMore onClick={onClick} />
-          )} */}
+          {filter.length && nextFilter !== null && (
+            <ButtonShowMore onClick={addFilterResults} />
+          )}
         </div>
       </PageTemplate>
     </div>

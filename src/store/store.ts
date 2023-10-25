@@ -20,8 +20,11 @@ const initialState = {
   onFocus: false,
   openFliter: false,
   filter: [],
+  nextFilter: '',
   genreID: '',
-  platformID: ''
+  platformID: '',
+  selectedGenre: '',
+  selectedPlatform: ''
 };
 
 const rootReducer = (state: any = initialState, action: any) => {
@@ -101,7 +104,14 @@ const rootReducer = (state: any = initialState, action: any) => {
     case "SET_FILTER_RESULTS" : {
       return {
         ...state,
-        filter: [...action.payload],
+        // filter: [...action.payload],
+        filter: [...state.filter.concat(action.payload)],
+      };
+    }
+    case "SET_NEXT_FILTER_PAGE" : {
+      return {
+        ...state,
+        nextFilter: action.payload,
       };
     }
     case 'SET_LOADING': {
@@ -121,6 +131,18 @@ const rootReducer = (state: any = initialState, action: any) => {
         ...state,
         genreID: action.payload,
       };
+    }    
+    case "SET_SELECTED_GENRE" : {
+      return {
+        ...state,
+        selectedGenre: action.payload,
+      };
+    }
+    case "SET_SELECTED_PLATFORM" : {
+      return {
+        ...state,
+        selectedPlatform: action.payload,
+      };
     }
     case "SET_PLATFORM_ID" : {
       return {
@@ -128,7 +150,6 @@ const rootReducer = (state: any = initialState, action: any) => {
         platformID: action.payload,
       };
     }
-
     default:
       return state;
   }
