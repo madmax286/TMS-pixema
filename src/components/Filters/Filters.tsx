@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
+import { GET_FILTER_RESULTS } from "../../actions/actions";
 import { useOnClickOutside } from "../../hooks";
 import { StyledFilter, StyledLink, StyledMenuLinks } from "./Filter.styled";
 import "./filters.css";
@@ -17,14 +18,25 @@ export type Props = {
 const Filters: FC<Props> = ({ open, setOpen, node, close }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
+  const genres = useSelector(({ genres }) => genres);
+  const platforms = useSelector(({ platforms }) => platforms);
   
+  const [genreID, setGenreID] = useState("");
+  const [platformID, setPlatformID] = useState("");
+  // console.log(genreID);
+  // console.log(platformID);  
+
   useOnClickOutside(node, () => {
     setOpen(false);
     dispatch({ type: "SET_OPEN_FILTER", payload: false }); 
   });
 
-  const showFilter = () => {
+  const showFilterResults = () => {
     navigate(`/games/filter`);
+    dispatch({type: 'SET_GENRE_ID', payload: genreID})
+    dispatch({type: 'SET_PLATFORM_ID', payload: platformID})
+
+    dispatch(GET_FILTER_RESULTS(platformID, genreID))
   };
 
   return (
@@ -49,32 +61,40 @@ const Filters: FC<Props> = ({ open, setOpen, node, close }) => {
 
         <span>Full or short game name</span>
         <div className="input-name">
-          <input type="text" placeholder="Your text" />
+          <input type="search" placeholder="Your text" />
         </div>
 
         <span>Genre</span>
         <div className="selector">
-          <select name="" id="">
-            <option value="">Select Genre</option>
+          <select onChange={(e) => setGenreID(e.currentTarget.value)} name="" id="">
+          <option >Select Genre</option>
+            {genres.length &&
+              genres.map(({name, id}: any) => (
+                <option key={id} value={id}>{name}</option>
+              ))}
           </select>
         </div>
 
         <span>Years</span>
         <div className="input-year">
-          <input type="text" placeholder="From" />
-          <input type="text" placeholder="To" />
+          <input disabled type="search" placeholder="From" />
+          <input disabled type="search" placeholder="To" />
         </div>
 
         <span>Rating</span>
         <div className="input-year">
-          <input type="text" placeholder="From" />
-          <input type="text" placeholder="To" />
+          <input disabled type="search" placeholder="From" />
+          <input disabled type="search" placeholder="To" />
         </div>
 
-        <span>Country</span>
+        <span>Platforms</span>
         <div className="selector">
-          <select name="" id="">
-            <option value="">Select Country</option>
+          <select onChange={(e) => setPlatformID(e.currentTarget.value)} name="" id="">
+          <option>Select Genre</option>
+            {platforms.length &&
+              platforms.map(({name, id}: any) => (
+                <option  key={id} value={id}>{name}</option>
+              ))}
           </select>
         </div>
 
@@ -82,7 +102,11 @@ const Filters: FC<Props> = ({ open, setOpen, node, close }) => {
           <button className="btn-clear" type="button">
             Clear filter
           </button>
-          <button onClick={showFilter} className="btn-results" type="button">
+          <button
+            onClick={showFilterResults}
+            className="btn-results"
+            type="button"
+          >
             Show results
           </button>
         </div>

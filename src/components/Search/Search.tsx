@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { GET_SEARCH } from '../../actions/actions';
+import { GET_GENRES, GET_PLATFORMS, GET_SEARCH } from '../../actions/actions';
 import { ReactComponent as FilterIcon } from "../../icons/Filter.svg";
 import Filters from '../Filters/Filters';
 import './search.css'
@@ -23,7 +23,9 @@ const Search = () => {
 
   useEffect(() => {
     if (search.trim().length > 1) dispatch(GET_SEARCH(search, navigate))
-    
+    dispatch(GET_GENRES());
+    dispatch(GET_PLATFORMS());
+
     const onClick = (e: any) =>
     //@ts-expect-error
     rootEl.current.contains(e.target);
@@ -50,7 +52,7 @@ const Search = () => {
         <div
           onClick={() => {
             setOpen(!open);
-            dispatch({ type: "SET_OPEN_FILTER", payload: true });            
+            dispatch({ type: "SET_OPEN_FILTER", payload: true });
           }}
           className="icon-filter"
         >

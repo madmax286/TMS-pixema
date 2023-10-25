@@ -7,15 +7,21 @@ const initialState = {
   game: [],
   screenshots: [],
   trailer: [],
+  genres: [],
+  platforms: [],
   trends: [],
   rating: 'top',
   isLoading: false,
   activeMenu: '',
-  page: 0,
+  nextPageTrends: '',
   nextSearch: '',
+  nextPage: '',
   search: [],
   onFocus: false,
-  openFliter: false
+  openFliter: false,
+  filter: [],
+  genreID: '',
+  platformID: ''
 };
 
 const rootReducer = (state: any = initialState, action: any) => {
@@ -44,6 +50,18 @@ const rootReducer = (state: any = initialState, action: any) => {
         trailer: [action.payload],
       };
     }
+    case "SET_GENRES": {
+      return {
+        ...state,
+        genres: action.payload,
+      };
+    }
+    case "SET_PLATFORMS": {
+      return {
+        ...state,
+        platforms: action.payload,
+      };
+    }
     case "SET_GAMES_TRENDS": {
       return {
         ...state,
@@ -62,10 +80,10 @@ const rootReducer = (state: any = initialState, action: any) => {
         openFliter: action.payload,
       };
     }
-    case "SET_PAGE" : {
+    case "SET_NEXT_PAGE_TRENDS" : {
       return {
         ...state,
-        page: action.payload,
+        nextPageTrends: action.payload,
       };
     }
     case "SET_NEXT_SEARCH" : {
@@ -80,6 +98,12 @@ const rootReducer = (state: any = initialState, action: any) => {
         search: action.payload,
       };
     }
+    case "SET_FILTER_RESULTS" : {
+      return {
+        ...state,
+        filter: [...action.payload],
+      };
+    }
     case 'SET_LOADING': {
       return {
         ...state,
@@ -92,6 +116,19 @@ const rootReducer = (state: any = initialState, action: any) => {
         onFocus: action.payload,
       };
     }
+    case "SET_GENRE_ID" : {
+      return {
+        ...state,
+        genreID: action.payload,
+      };
+    }
+    case "SET_PLATFORM_ID" : {
+      return {
+        ...state,
+        platformID: action.payload,
+      };
+    }
+
     default:
       return state;
   }

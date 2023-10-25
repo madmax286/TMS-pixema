@@ -24,7 +24,7 @@ input::placeholder {
   opacity: 1; transition: opacity 0.3s ease;
 }
 
-input:focus {
+input:focus, select:focus {
   color: white;
   border: solid 2px #7B61FF;
 }
@@ -43,7 +43,7 @@ input, button, textarea, select {
   font: inherit;
 }
 
-button {
+button, select {
   cursor: pointer;
 }
 

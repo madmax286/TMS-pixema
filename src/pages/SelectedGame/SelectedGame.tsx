@@ -68,10 +68,16 @@ const SelectedGame = () => {
                           </div>
                         ))}
                     </div>
+                    {trailer.length &&
+                      trailer[0].map((e: any, id: number) => (
+                        <Player key={id} poster={e.preview}>
+                          <source src={e.data.max} />
+                        </Player>
+                      ))}
+
                   </div>
                   <div className="game__description">
                     <div className="game__genres">
-                      <h5>Genres: </h5>
                       {genres.length ?
                         genres.map((e: any, id: number) => (
                           <h5 key={id}>{e.name}</h5>
@@ -103,7 +109,6 @@ const SelectedGame = () => {
                     </div>
                     <h4>{description_raw}</h4>
                     <div className="game__platforms">
-                      <h5>Platforms: </h5>
                       {platforms.length &&
                         platforms.map((e: any, id: number) => (
                           <h5 key={id}>{e.platform.name}</h5>
@@ -111,12 +116,6 @@ const SelectedGame = () => {
                     </div>
                     <h4>Released: {released}</h4>
                     <a href={website}>{website}</a>
-                    {trailer.length &&
-                      trailer[0].map((e: any, id: number) => (
-                        <Player key={id} poster={e.preview}>
-                          <source src={e.data.max} />
-                        </Player>
-                      ))}
                   </div>
                 </main>
               )

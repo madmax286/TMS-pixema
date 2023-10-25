@@ -10,7 +10,7 @@ import "./trends.css";
 const Trends = () => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const trends = useSelector(({ trends }) => trends);
-  const page = useSelector(({ page }) => page);
+  const nextPageTrends = useSelector(({ nextPageTrends }) => nextPageTrends);
 
   let randomPage = Math.floor(Math.random() * 100);
   useEffect(() => {
@@ -38,7 +38,7 @@ const Trends = () => {
               )
             )}
         </div>
-        <ButtonShowMore onClick={() => dispatch(GET_GAMES_TRENDS(page))}/>
+        <ButtonShowMore onClick={() => dispatch(GET_GAMES_TRENDS(nextPageTrends))}/>
       </div>
     </PageTemplate>
   );

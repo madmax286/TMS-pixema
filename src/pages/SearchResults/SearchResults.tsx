@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import instance from "../../axiosConfig";
-import { ButtonShowMore, GameCard, PageTemplate } from "../../components";
+import { ButtonShowMore, GameCard, Loader, PageTemplate } from "../../components";
 import { IGame } from "../../interfaces";
 import "../Home/home.css";
 
@@ -12,8 +12,9 @@ const SearchResults = () => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const search = useSelector(({ search }) => search);
   const nextSearch = useSelector(({ nextSearch }) => nextSearch);
+  const isLoading = useSelector(({isLoading}) => isLoading)
 
-  const onClick = () => {
+  const onClickShowMore = () => {
     instance.get(nextSearch).then((data) => {
       const nextPage = data.data.next;
       dispatch({ type: "SET_NEXT_SEARCH", payload: nextPage });
@@ -31,7 +32,7 @@ const SearchResults = () => {
       <PageTemplate>
         <div className="games-layout">
           <div className="games-list">
-            {search.length &&
+            {isLoading ? <Loader/> : search.length &&
               search.map(
                 ({
                   background_image,
@@ -54,7 +55,7 @@ const SearchResults = () => {
               )}
           </div>
           {search.length && nextSearch !== null && (
-            <ButtonShowMore onClick={onClick} />
+            <ButtonShowMore onClick={onClickShowMore} />
           )}
         </div>
       </PageTemplate>

@@ -9,6 +9,9 @@ export const GET_GAMES = (randomPage?: any) => {
         await instance.get(`/games?${apiKeyRawg}&page_size=12&page=${randomPage}`)
         .then((data) => {
           const games = data.data.results;
+          const page = data.data.next
+          console.log(page);
+          
           console.log(games);
           dispatch({ type: "SET_GAMES", payload: games });
         })        
@@ -70,17 +73,22 @@ export const GET_GAME_TRAILER = (id: any) => {
 
 export const GET_GAMES_TRENDS = (page: number) => {
   return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
+    dispatch({ type: "SET_LOADING" });
     try {
-      instance.get(`/games?${apiKeyRawg}&ordering=-rating&page_size=12&page=${page}`)
+      await instance.get(`/games?${apiKeyRawg}&ordering=-rating&page=${page}`)
       .then((data) => {
         const trends = data.data.results;
         console.log(trends);        
         const page = data.data.next
-        dispatch({ type: "SET_PAGE", payload: page });
+        console.log(page);
+        
+        dispatch({ type: "SET_NEXT_PAGE_TRENDS", payload: page });
         dispatch({ type: "SET_GAMES_TRENDS", payload: trends });
       })
     } catch (err) {
       console.log(err);
+    } finally {
+      dispatch({ type: "SET_LOADING" });
     }
   }
 }
@@ -105,19 +113,48 @@ export const GET_SEARCH = (search: any, navigate?: any) => {
   }
 }
 
-export const GET_NEXT_PAGE = (page: any) => {
+export const GET_GENRES = () => {
   return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
-    dispatch({ type: "SET_LOADING" });
     try {
-      instance.get(`${page}`)
+      instance.get(`/genres?${apiKeyRawg}`)
       .then((data) => {
-        const page = data.data.next
-        dispatch({ type: "SET_PAGE", payload: page });
+        const genres = data.data.results
+        dispatch({ type: "SET_GENRES", payload: genres });
       })
     } catch (err) {
       console.log(err);
-    } finally {
-    dispatch({ type: "SET_LOADING" });
     }
   }
 }
+
+export const GET_PLATFORMS = () => {
+  return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
+    try {
+      instance.get(`/platforms?${apiKeyRawg}`)
+      .then((data) => {
+        const platforms = data.data.results
+        dispatch({ type: "SET_PLATFORMS", payload: platforms });
+      })
+    } catch (err) {
+      console.log(err);
+    }
+  }
+}
+
+export const GET_FILTER_RESULTS = (platformID: any, genreID: any) => {
+  return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
+    dispatch({ type: "SET_LOADING" });
+    try {
+      await instance
+        .get(`/games?${apiKeyRawg}${platformID ? `&platforms=${platformID}` : ''}${genreID ? `&genres=${genreID}` : ''}`)
+        .then((data) => {
+          const filter = data.data.results;
+          dispatch({ type: "SET_FILTER_RESULTS", payload: filter });
+        });
+    } catch (err) {
+      console.log(err);
+    } finally {
+      dispatch({ type: "SET_LOADING" });
+    }
+  };
+};
