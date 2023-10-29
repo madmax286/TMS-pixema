@@ -4,7 +4,7 @@ interface IInput {
     label?: string,
     placeholder?: string,
     type: 'text' | 'textarea' | 'password' | 'email' | 'file',
-    value: string,
+    value?: string,
     onChange: (value: string) => void,
 }
 

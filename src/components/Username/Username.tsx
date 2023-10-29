@@ -1,36 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ReactComponent as Usericon } from "../../assets/user.svg";
+import { user } from "../../key";
 import "./username.css";
 
 const Username = () => {
   const navigate = useNavigate();
+  const [onClickUser, setOnClickUser] = useState(false)
 
   const token = sessionStorage.getItem("token");
-  const username = sessionStorage.getItem("username");
+
+  const firstName = user.firstName;
+  const lastName = user.lastName;
+  const firstSymbol = firstName[0].toUpperCase();
+  const lastSymbol = lastName[0].toUpperCase();
+  
+
+  const onToggleUserName = () => {
+    if (token) setOnClickUser(onClickUser => !onClickUser)
+    else navigate("/signin");
+  };
+
+  const editProfile = () => {
+    navigate("/games/settings");
+  };
+
+  const logOut = () => {
+    sessionStorage.removeItem("token");
+    window.location.reload()
+    // navigate("/games/home");
+  };
 
   return (
-    <div className="username">
+    <div onClick={onToggleUserName} className="username">
+      <div className="symbol-name">
+        {token ? (
+          <span>
+            {firstSymbol}
+            {lastSymbol}
+          </span>
+        ) : (
+          <Usericon />
+        )}
+      </div>
       {token ? (
-        <>
-          <span>{username}</span>
-          <button
-            onClick={() => {
-              sessionStorage.removeItem("token");
-              navigate("/games/home");
-            }}
-          >
-            Log Out
-          </button>
-        </>
+        <div className="full-name">
+          <span className="first-name">{firstName}</span>
+          <span>{lastName}</span>
+        </div>
       ) : (
-        <button
-          onClick={() => {
-            navigate("/signin");
-          }}
-        >
-          Log In
-        </button>
+        <span>Sign in</span>
       )}
+      {onClickUser ?
+      <div className={`username-menu ${onClickUser ? 'active' : ''}`}>
+        <div className="username-menu__edit">
+          <span onClick={editProfile}>Edit Profile</span>
+        </div>
+        <div onClick={logOut} className="username-menu__log-out">
+          <span>Log Out</span>
+        </div>
+      </div>
+      : ''
+      }
+      <div className="arrow-container">
+        <div className={`arrow ${onClickUser ? 'rotate-arrow' : ''}`}></div>
+      </div>
     </div>
   );
 };

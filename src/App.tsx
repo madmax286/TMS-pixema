@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import {Route, Routes, useNavigate, useLocation, Navigate} from "react-router-dom";
-import { AnyAction } from "redux";
-import { ThunkDispatch } from "redux-thunk";
-import { Home, Trends, Favorites, Settings, SelectedGame, SearchResults, FilterPage, SignIn, SignUp } from "./pages";
+import { Home, Trends, Favorites, Settings, SelectedGame, SearchResults, FilterPage, SignIn, SignUp, ErrorPage, Media } from "./pages";
 
 const App = () => {
-  const location = useLocation();
-
+  const location = useLocation();   
   return (
     <div>
       <>
@@ -17,10 +13,12 @@ const App = () => {
           <Route path="/games/favorites" element={<Favorites />} />
           <Route path="/games/settings" element={<Settings />} />
           <Route path="/game/:id/:slug" element={<SelectedGame />} />
+          <Route path="/game/:id/:slug/media" element={<Media />} />
           <Route path="/games/search/" element={<SearchResults />} />
           <Route path="/games/filter" element={<FilterPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/error" element={<ErrorPage />} /> */}
         </Routes>
         {location.pathname === "/" && <Navigate to="games/home" />}
       </>
@@ -29,3 +27,4 @@ const App = () => {
 }
 
 export default App;
+

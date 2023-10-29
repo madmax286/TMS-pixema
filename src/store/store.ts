@@ -10,6 +10,7 @@ const initialState = {
   genres: [],
   platforms: [],
   trends: [],
+  favorites: [],
   rating: 'top',
   isLoading: false,
   activeMenu: '',
@@ -57,6 +58,30 @@ const rootReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         genres: action.payload,
+      };
+    }
+    case "SET_FAVORITES": {
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
+        // favorites: () => {
+        //   let indx = state.favorites.indexOf(action.payload)
+        //   if (~indx) state.favorites.splice(indx, 1);
+        //   else state.favorites.push(action.payload);
+        //   return indx
+        //   console.log(indx);     
+        // }
+        
+        // favorites: [...state.favorites, state.favorites.filter((item: any) => {
+        //   if (item && item.id === action.payload.id) {
+        //    return action.payload
+        //   }
+        //   return action.payload
+        //   // return state.favorites
+        // })]
+
+       // favorites: [...state.favorites, state.favorites.filter(({id}: any) => id !== action.payload.id)]
+
       };
     }
     case "SET_PLATFORMS": {

@@ -7,10 +7,14 @@
     font-weight: 600;
     line-height: 24px;
     word-wrap: break-word;
-    padding: 48px 0 4vh 4vw;
+    padding: 48px 0 4vh 2vw;
     position: fixed;
-    background-color: black;
-
+    .light {
+        background-color: rgb(196, 196, 196);
+    }
+    .dark {
+        background-color: black;
+    }
     .menu__logo {
         padding: 0 20px 64px 0;
     }
@@ -39,5 +43,4 @@
         color: #917CFF;
         fill: #917CFF;
     }
-
 }

@@ -23,6 +23,9 @@ const Filters: FC<Props> = ({ open, setOpen, node, close }) => {
   const games = useSelector(({ games }) => games);
   
   const [genreID, setGenreID] = useState("");
+  const [checkedGenre, setCheckedGenre] = useState("");
+  const [checkedPlatform, setCheckedPlatform] = useState("");
+  
   const [platformID, setPlatformID] = useState("");
   const [name, setName] = useState("");
   const [dateFrom, setdateFrom] = useState("");

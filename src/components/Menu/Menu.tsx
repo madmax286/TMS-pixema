@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import LogoIcon from "../../assets/Logo.svg";
 import MenuLink from "../MenuLink/MenuLink";
+import { token } from '../../key'
 import "./menu.css";
 
 const Menu = () => {
-  const token = sessionStorage.getItem("token");
+  // const token = localStorage.getItem("token");
 
   return (
     <aside className="menu__wrapper">
@@ -14,6 +15,7 @@ const Menu = () => {
       <MenuLink text="Home" />
       <MenuLink text="Trends" />
       {token &&<MenuLink text="Favorites" />}
+      {/* <MenuLink text="Favorites" /> */}
       <MenuLink text="Settings" />
       <span className="rights-reserved">© All Rights Reserved</span>
     </aside>

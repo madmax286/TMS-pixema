@@ -9,11 +9,12 @@ import { ButtonShowMore, GameCard, Loader, PageTemplate } from "../../components
 import "./home.css";
 
 const Home = () => {
+
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const games = useSelector(({ games }) => games);
   const isLoading = useSelector(({ isLoading }) => isLoading);
 
-  let randomPage = Math.floor(Math.random() * 500);
+  let randomPage = Math.floor(Math.random() * 200);
 
   useEffect(() => {
     if (!games.length) {

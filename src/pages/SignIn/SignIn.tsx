@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiKeyRawg } from "../../axiosConfig";
 import { Input } from "../../components";
 import PageTemplateSign from "../../components/PageTemplateSign/PageTemplateSign";
+import { apiKeyRawg, user } from "../../key";
 import "./signin.css";
 
 const SignIn = () => {
@@ -10,15 +10,14 @@ const SignIn = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const userEmail = sessionStorage.getItem("email");
-  const userPassword = sessionStorage.getItem("password");
-
+  
   const onClickSignIn = () => {
-    if (email === userEmail && password === userPassword) {
+    if (email === user.email && password === user.password) {
       sessionStorage.setItem("token", `${apiKeyRawg}`);
       navigate("/games/home");
     } else alert("Incorrect Email or Password");
+    window.location.reload()
+
   };
 
   return (

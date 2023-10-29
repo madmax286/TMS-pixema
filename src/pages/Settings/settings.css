@@ -17,6 +17,7 @@
 .settings_wrapper .profile_container, .settings_wrapper .password_container, .settings_wrapper .color-mode_container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 35px;
   background-color: #242426;
@@ -35,7 +36,8 @@
   flex-direction: column;
 }
 .settings_wrapper .color-mode_container {
-  padding: 35px;
+  padding: 20px 35px;
+  align-items: center;
 }
 .settings_wrapper .color-mode_container .theme-name h4:nth-child(2) {
   color: #AFB2B6;
@@ -44,8 +46,8 @@
 .settings_wrapper .color-mode_container .switch {
   position: relative;
   display: inline-block;
-  width: 70px;
-  height: 35px;
+  width: 60px;
+  height: 25px;
 }
 .settings_wrapper .color-mode_container .switch input {
   opacity: 0;
@@ -59,9 +61,9 @@
   box-shadow: 0 0 1px #7B61FF;
 }
 .settings_wrapper .color-mode_container .switch input:checked + .slider:before {
-  -webkit-transform: translateX(30px);
-  -ms-transform: translateX(30px);
-  transform: translateX(30px);
+  -webkit-transform: translateX(35px);
+  -ms-transform: translateX(35px);
+  transform: translateX(35px);
   background-repeat: no-repeat;
   background-position: center;
   background-color: white;
@@ -87,9 +89,9 @@
 .settings_wrapper .color-mode_container .switch .slider:before {
   position: absolute;
   content: "";
-  height: 30px;
-  width: 30px;
-  left: 5px;
+  height: 25px;
+  width: 25px;
+  left: 0;
   bottom: 4px;
   top: 0;
   bottom: 0;

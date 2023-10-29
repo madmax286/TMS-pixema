@@ -6,7 +6,7 @@
     color: white;
     padding: 152px 3vw 10vh 18vw;
 
-    .game__screenshots-container {
+    .game__media-container {
         display: flex;
         flex-direction: column;
         width: 49%;
@@ -15,7 +15,7 @@
             margin-bottom: 2%;
             border-radius: 10px;
         }
-        .game__screenshots {
+        .game__media {
             width: 100%;
             display: grid;
             justify-content: center;
@@ -29,6 +29,22 @@
                 &:hover {
                     cursor: pointer;
                     box-shadow: 0 0 40px 10px #7B61FF;
+                }
+            }
+            .game__media__view-all {
+                color: #80858B;
+                background-color: #242426;
+                border-radius: 10px;
+                transition: all .3s linear;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                
+                &:hover {
+                    cursor: pointer;
+                    color: #242426;
+                    background-color: #80858B;   
                 }
             }
         }    

@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import instance, { apiKeyRawg } from "../axiosConfig";
+import instance from "../axiosConfig";
+import { apiKeyRawg } from "../key";
 
 export const GET_GAMES = (randomPage?: any) => {
+  // const navigate = useNavigate();
   return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
     dispatch({ type: "SET_LOADING" });
       try {
@@ -10,13 +13,12 @@ export const GET_GAMES = (randomPage?: any) => {
         .then((data) => {
           const games = data.data.results;
           const page = data.data.next
-          console.log(page);
-          
-          console.log(games);
           dispatch({ type: "SET_GAMES", payload: games });
         })        
       } catch (err) {
         console.log(err);
+        // navigate("/error");
+
       } finally {
       dispatch({ type: "SET_LOADING" });
       }  
@@ -29,9 +31,7 @@ export const GET_SELECTED_GAME = (id: any, slug?: any, navigate?: any) => {
     try {
       await instance.get(`/games/${id}?${apiKeyRawg}`)
       .then((data) => {
-        const game = data.data;
-        console.log('SET_SELECTED_GAME', game);
-        
+        const game = data.data;       
         dispatch({ type: "SET_SELECTED_GAME", payload: game });
         navigate(`/game/${id}/${slug}`);
       })
@@ -75,13 +75,10 @@ export const GET_GAMES_TRENDS = (page: number) => {
   return async (dispatch: ThunkDispatch<any, {}, AnyAction>) => {
     dispatch({ type: "SET_LOADING" });
     try {
-      await instance.get(`/games?${apiKeyRawg}&ordering=-rating&page=${page}`)
+      await instance.get(`/games?${apiKeyRawg}&page_size=12&ordering=-rating&page=${page}`)
       .then((data) => {
         const trends = data.data.results;
-        console.log(trends);        
-        const page = data.data.next
-        console.log(page);
-        
+        const page = data.data.next       
         dispatch({ type: "SET_NEXT_PAGE_TRENDS", payload: page });
         dispatch({ type: "SET_GAMES_TRENDS", payload: trends });
       })
@@ -154,14 +151,10 @@ export const GET_FILTER_RESULTS = (
     try {
       await instance
         .get(
-          `/games?${apiKeyRawg}${platformID ? `&platforms=${platformID}` : ""}${genreID ? `&genres=${genreID}` : ""}${name ? `&search=${name}` : ""}&dates=${dateFrom ? `${dateFrom}` : '2000'},${dateTo ? `${dateTo}` : '2024'}&ordering=-${sortRating}`)
+          `/games?${apiKeyRawg}&page_size=12${platformID ? `&platforms=${platformID}` : ""}${genreID ? `&genres=${genreID}` : ""}${name ? `&search=${name}` : ""}&dates=${dateFrom ? `${dateFrom}` : '2000'},${dateTo ? `${dateTo}` : '2024'}&ordering=-${sortRating}`)
         .then((data) => {
           const filter = data.data.results;
-          console.log(platformID, genreID, name, dateFrom, dateTo, sortRating);
-          console.log(data.data);
-
-          const next = data.data.next;
-          
+          const next = data.data.next;          
           dispatch({ type: "SET_FILTER_RESULTS", payload: filter });
           dispatch({ type: "SET_NEXT_FILTER_PAGE", payload: next });
         });

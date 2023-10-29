@@ -13,11 +13,11 @@ const Trends = () => {
   const nextPageTrends = useSelector(({ nextPageTrends }) => nextPageTrends);
 
   let randomPage = Math.floor(Math.random() * 100);
-  useEffect(() => {
-    if (!trends.length) {
-      dispatch(GET_GAMES_TRENDS(randomPage));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!trends.length) {
+  //     dispatch(GET_GAMES_TRENDS(randomPage));
+  //   }
+  // }, []);
 
   return (
     <PageTemplate>

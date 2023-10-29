@@ -6,16 +6,16 @@
   color: white;
   padding: 152px 3vw 10vh 18vw;
 }
-.game-content .game__screenshots-container {
+.game-content .game__media-container {
   display: flex;
   flex-direction: column;
   width: 49%;
 }
-.game-content .game__screenshots-container img {
+.game-content .game__media-container img {
   margin-bottom: 2%;
   border-radius: 10px;
 }
-.game-content .game__screenshots-container .game__screenshots {
+.game-content .game__media-container .game__media {
   width: 100%;
   display: grid;
   justify-content: center;
@@ -23,12 +23,27 @@
   gap: 2%;
   padding-bottom: 20px;
 }
-.game-content .game__screenshots-container .game__screenshots .game__screenshots-img {
+.game-content .game__media-container .game__media .game__screenshots-img {
   border-radius: 10px;
 }
-.game-content .game__screenshots-container .game__screenshots .game__screenshots-img:hover {
+.game-content .game__media-container .game__media .game__screenshots-img:hover {
   cursor: pointer;
   box-shadow: 0 0 40px 10px #7B61FF;
+}
+.game-content .game__media-container .game__media .game__media__view-all {
+  color: #80858B;
+  background-color: #242426;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.game-content .game__media-container .game__media .game__media__view-all:hover {
+  cursor: pointer;
+  color: #242426;
+  background-color: #80858B;
 }
 .game-content .game__description {
   width: 49%;

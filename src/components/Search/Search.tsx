@@ -22,16 +22,15 @@ const Search = () => {
   const rootEl = useRef(null);
 
   useEffect(() => {
-    if (search.trim().length > 1) dispatch(GET_SEARCH(search, navigate))
+    if (search.trim().length > 4) dispatch(GET_SEARCH(search, navigate))
     dispatch(GET_GENRES());
     dispatch(GET_PLATFORMS());
-
-    const onClick = (e: any) =>
-    //@ts-expect-error
-    rootEl.current.contains(e.target);
-    dispatch({ type: "SET_FOCUS", payload: false });
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
+    
+    // //@ts-expect-error
+    // const onClickSearch = (e: any) => rootEl.current.contains(e.target);
+    // dispatch({ type: "SET_FOCUS", payload: false });
+    // document.addEventListener("click", onClickSearch);
+    // return () => document.removeEventListener("click", onClickSearch);
 
   }, [search]);
 
