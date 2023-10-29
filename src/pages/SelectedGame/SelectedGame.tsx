@@ -33,9 +33,11 @@ const SelectedGame = () => {
   }
   
   const addBookmark = () => {    
-    if (bookmark()) localStorage.removeItem(`${id}`)
-    else localStorage.setItem(`${id}`, JSON.stringify(game));
-    window.location.reload() 
+    //@ts-expect-error
+    arr.push(game[0])    
+
+    localStorage.setItem(`bookmarks`, JSON.stringify(arr));
+    console.log(arr);
   };
 
   const token = sessionStorage.getItem("token");
