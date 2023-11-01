@@ -11,7 +11,6 @@ import './search.css'
 const Search = () => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const navigate = useNavigate();
-  const onFocus = useSelector(({onFocus}) => onFocus)
   
   const theme = useSelector(({ theme }) => theme);
   const [open, setOpen] = useState<boolean>(false);
@@ -19,28 +18,21 @@ const Search = () => {
   const close = () => setOpen(false);
 
   const [search, setSearch] = useState("");
-  const rootEl = useRef(null);
 
-  useEffect(() => {
-    if (search.trim().length > 4) dispatch(GET_SEARCH(search, navigate))
-    dispatch(GET_GENRES());
-    dispatch(GET_PLATFORMS());
-    
-    // //@ts-expect-error
-    // const onClickSearch = (e: any) => rootEl.current.contains(e.target);
-    // dispatch({ type: "SET_FOCUS", payload: false });
-    // document.addEventListener("click", onClickSearch);
-    // return () => document.removeEventListener("click", onClickSearch);
-
-  }, [search]);
+  const handleKeyDown = (event: { key: string; }) => {
+    if (event.key === 'Enter') {
+      if (search.trim().length > 0) dispatch(GET_SEARCH(search, navigate))
+      dispatch(GET_GENRES());
+      dispatch(GET_PLATFORMS());      
+    }
+  };
 
   return (
     <>
-      <div className="search-input" ref={rootEl}>
+      <div className="search-input">
         <input
-          autoFocus={onFocus}
+          onKeyDown={handleKeyDown}
           onClick={() => {
-            navigate(`/games/search/?search=${search}`);
             dispatch({ type: "SET_FOCUS", payload: true });
           }}
           type="search"

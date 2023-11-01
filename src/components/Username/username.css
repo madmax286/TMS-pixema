@@ -1,5 +1,5 @@
 .username {
-    width: 25%;
+    flex-grow: 1;
     margin: 0 3vw 0 1vw;
     color: white;
     font-size: 16px;
@@ -34,18 +34,11 @@
     flex-direction: column;
     background-color: #242426;
     border-radius: 10px;
-    transform: translateX(150%);
-    animation: ani 1s forwards;
+    animation: ani .7s forwards;
 }
-
 @keyframes ani {
-    0% {
-        transform: translateX(150%);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 .username-menu__edit,
@@ -54,6 +47,7 @@
     display: flex;
     align-items: center;
     padding-left: 20px;
+    transition: .3s;
 }
 
 .username-menu__edit {

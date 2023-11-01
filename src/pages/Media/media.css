@@ -71,6 +71,7 @@
 .media-wrapper .screenshots-container .media-content,
 .media-wrapper .screenshots-container .trailer-content {
   border-radius: 10px;
+  position: relative;
 }
 .media-wrapper .trailer-container .media-content:hover,
 .media-wrapper .trailer-container .trailer-content:hover,
@@ -85,16 +86,15 @@
   height: 40px;
   border-radius: 40px;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 30px;
   z-index: 20;
-  margin: 20px auto;
   cursor: pointer;
 }
 
 .cl-btn-7:before {
   content: "+";
-  color: #337AB7;
+  color: white;
   position: absolute;
   z-index: 2;
   transform: rotate(45deg);
@@ -108,12 +108,12 @@
 .cl-btn-7:after {
   content: "";
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 0;
   width: 100%;
   height: 100%;
   border-radius: 100%;
-  background: #337AB7;
+  background: white;
   z-index: 1;
   transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
   transform: scale(0.01);
@@ -125,5 +125,16 @@
 
 .cl-btn-7:hover:before {
   transform: scale(0.8) rotate(45deg);
-  color: #fff;
+  color: black;
+}
+
+.background_image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+  opacity: 0.1;
+  object-fit: cover;
 }

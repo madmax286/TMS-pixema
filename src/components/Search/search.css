@@ -1,7 +1,7 @@
 .search-input {
     height: 56px;
-    width: 70%;
     position: relative;
+    flex-grow: 9;
 }
 
 .icon-filter {

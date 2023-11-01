@@ -15,6 +15,7 @@ const initialState = {
   isLoading: false,
   activeMenu: '',
   nextPageTrends: '',
+  nextPageHome: '',
   nextSearch: '',
   nextPage: '',
   search: [],
@@ -64,24 +65,6 @@ const rootReducer = (state: any = initialState, action: any) => {
       return {
         ...state,
         favorites: [...state.favorites, action.payload],
-        // favorites: () => {
-        //   let indx = state.favorites.indexOf(action.payload)
-        //   if (~indx) state.favorites.splice(indx, 1);
-        //   else state.favorites.push(action.payload);
-        //   return indx
-        //   console.log(indx);     
-        // }
-        
-        // favorites: [...state.favorites, state.favorites.filter((item: any) => {
-        //   if (item && item.id === action.payload.id) {
-        //    return action.payload
-        //   }
-        //   return action.payload
-        //   // return state.favorites
-        // })]
-
-       // favorites: [...state.favorites, state.favorites.filter(({id}: any) => id !== action.payload.id)]
-
       };
     }
     case "SET_PLATFORMS": {
@@ -108,6 +91,12 @@ const rootReducer = (state: any = initialState, action: any) => {
         openFliter: action.payload,
       };
     }
+    case "SET_NEXT_PAGE_HOME" : {
+      return {
+        ...state,
+        nextPageHome: action.payload,
+      };
+    }
     case "SET_NEXT_PAGE_TRENDS" : {
       return {
         ...state,
@@ -123,7 +112,8 @@ const rootReducer = (state: any = initialState, action: any) => {
     case "SET_SEARCH" : {
       return {
         ...state,
-        search: action.payload,
+        // search: action.payload,
+        search: [...state.search, ...action.payload],
       };
     }
     case "SET_FILTER_RESULTS" : {

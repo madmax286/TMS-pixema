@@ -21,9 +21,9 @@ const SignUp = () => {
   }
   const onClickSignUp = async () => {
     if (
-      firstName.length > 1 &&
-      lastName.length > 1 &&
-      email.length > 3 &&
+      firstName.trim().length > 1 &&
+      lastName.trim().length > 1 &&
+      email.trim().length > 3 &&
       email.includes('@') &&
       password.length > 2 &&
       password === confirmPassword

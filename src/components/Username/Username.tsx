@@ -6,15 +6,12 @@ import "./username.css";
 
 const Username = () => {
   const navigate = useNavigate();
-  const [onClickUser, setOnClickUser] = useState(false)
-
+  const [onClickUser, setOnClickUser] = useState(false)  
   const token = sessionStorage.getItem("token");
-
-  const firstName = user.firstName;
-  const lastName = user.lastName;
-  const firstSymbol = firstName[0].toUpperCase();
-  const lastSymbol = lastName[0].toUpperCase();
-  
+  const firstName = user().firstName;
+  const lastName = user().lastName;
+  const firstSymbol = firstName.length > 0 && firstName[0].toUpperCase();
+  const lastSymbol = lastName.length > 0 && lastName[0].toUpperCase();  
 
   const onToggleUserName = () => {
     if (token) setOnClickUser(onClickUser => !onClickUser)
@@ -28,7 +25,6 @@ const Username = () => {
   const logOut = () => {
     sessionStorage.removeItem("token");
     window.location.reload()
-    // navigate("/games/home");
   };
 
   return (
@@ -53,8 +49,8 @@ const Username = () => {
       )}
       {onClickUser ?
       <div className={`username-menu ${onClickUser ? 'active' : ''}`}>
-        <div className="username-menu__edit">
-          <span onClick={editProfile}>Edit Profile</span>
+        <div onClick={editProfile} className="username-menu__edit">
+          <span>Edit Profile</span>
         </div>
         <div onClick={logOut} className="username-menu__log-out">
           <span>Log Out</span>

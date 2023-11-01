@@ -12,12 +12,11 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   
   const onClickSignIn = () => {
-    if (email === user.email && password === user.password) {
+    if (email === user().email && password === user().password) {
       sessionStorage.setItem("token", `${apiKeyRawg}`);
       navigate("/games/home");
     } else alert("Incorrect Email or Password");
     window.location.reload()
-
   };
 
   return (

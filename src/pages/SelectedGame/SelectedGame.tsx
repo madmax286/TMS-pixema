@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { Player } from "video-react";
+import { Player, BigPlayButton } from "video-react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AnyAction } from "redux";
@@ -60,9 +60,14 @@ const SelectedGame = () => {
                 website,
               }: IGame) => (
                 <main key={id} className="game-content">
+                  <img
+                    className="background_image"
+                    src={background_image}
+                    alt={slug}
+                  />
                   <div className="game__media-container">
                     <img src={background_image} alt={slug} />
-                    <p>Media</p>
+                    {/* <p>Media</p> */}
                     <div className="game__media">
                       {screenshots.length &&
                         screenshots[0]
@@ -75,9 +80,10 @@ const SelectedGame = () => {
                       {trailer.length &&
                         trailer[0]
                           .map((e: any, id: number) => (
-                            <Player key={id} poster={e.preview}>
-                              <source src={e.data.max} />
-                            </Player>
+                            <div key={id} className="game__screenshots-img">
+                              <img src={e.preview} alt={e.preview} />
+                              {/* <div className="icon-play"></div> */}
+                            </div>
                           ))
                           .slice(0, 1)}
                       <div
@@ -132,7 +138,7 @@ const SelectedGame = () => {
                           <h5 key={id}>{e.platform.name}</h5>
                         ))}
                     </div>
-                    <h4>Released: {released}</h4>
+                    <h4>Release date: {released}</h4>
                     <a href={website}>{website}</a>
                   </div>
                 </main>

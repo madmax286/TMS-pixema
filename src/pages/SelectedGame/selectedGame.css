@@ -1,10 +1,15 @@
 .game-content {
-  width: 100%;
+  max-width: 1280px;
   height: 100%;
   display: flex;
   justify-content: space-between;
   color: white;
-  padding: 152px 3vw 10vh 18vw;
+  margin: 152px 3vw 10vh 18vw;
+}
+@media screen and (max-width: 1450px) {
+  .game-content {
+    max-width: 960px;
+  }
 }
 .game-content .game__media-container {
   display: flex;
@@ -20,14 +25,49 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2%;
-  padding-bottom: 20px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4% 2%;
+  padding: 20px 0;
 }
 .game-content .game__media-container .game__media .game__screenshots-img {
   border-radius: 10px;
+  position: relative;
+}
+.game-content .game__media-container .game__media .game__screenshots-img .icon-play {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: solid 2px white;
+  border-radius: 100px;
+  top: 0;
+  left: 0;
+}
+.game-content .game__media-container .game__media .game__screenshots-img .icon-play:before {
+  content: "";
+  width: 34px;
+  height: 53px;
+  border-left: 2px solid white;
+  border-radius: 5px;
+  position: absolute;
+  top: 23px;
+  left: 37px;
+}
+.game-content .game__media-container .game__media .game__screenshots-img .icon-play:after {
+  content: "";
+  position: absolute;
+  top: 27px;
+  left: 19px;
+  width: 42px;
+  height: 42px;
+  transform: rotate(45deg) skew(-5deg, -5deg);
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  border-radius: 5px;
+}
+.game-content .game__media-container .game__media .game__screenshots-img .icon-play:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .game-content .game__media-container .game__media .game__screenshots-img:hover {
-  cursor: pointer;
   box-shadow: 0 0 40px 10px #7B61FF;
 }
 .game-content .game__media-container .game__media .game__media__view-all {
@@ -82,8 +122,11 @@
   color: #AFB2B6;
 }
 .game-content .game__description .game__platforms h5 {
-  margin-right: 2%;
+  margin-bottom: 2%;
   font-weight: 500;
+}
+.game-content .game__description h1 {
+  font-size: 50px;
 }
 .game-content .game__description h1, .game-content .game__description h4 {
   margin: 20px 0 20px 0;
@@ -91,7 +134,7 @@
 .game-content .game__description h4 {
   font-weight: 500;
   display: -webkit-box;
-  -webkit-line-clamp: 10;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -121,4 +164,15 @@
 }
 .game-content .game__description a {
   margin-bottom: 20px;
+}
+
+.background_image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+  opacity: 0.1;
+  object-fit: cover;
 }

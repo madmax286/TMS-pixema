@@ -23,18 +23,18 @@ const Settings = () => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    password: btoa(password),
+    password: password,
   };
 
   const onChangeBtn = () => {
     if (
-      firstName.length > 1 &&
-      lastName.length > 1 &&
-      email.length > 3 &&
-      email.includes("@") &&
-      password.length > 2 &&
-      newPassword === confirmPassword &&
-      password === atob(user.password)
+      firstName.length > 1 ||
+      lastName.length > 1 ||
+      email.length > 3 ||
+      email.includes("@") ||
+      newPassword.length > 2 ||
+      newPassword === confirmPassword ||
+      password === user().password
     ) {
       localStorage.setItem("user", JSON.stringify(changeUser));
       navigate("/games/home");
@@ -53,21 +53,21 @@ const Settings = () => {
               <Input
                 type="text"
                 label="First name"
-                placeholder={user.firstName}
-                value={firstName}
+                placeholder={user().firstName}
+                // value={firstName}
                 onChange={setFirstName}
               />
               <Input
                 type="text"
                 label="Last name"
-                placeholder={user.lastName}
-                value={lastName}
+                placeholder={user().lastName}
+                // value={lastName}
                 onChange={setLastName}
               />
               <Input
                 type="text"
                 label="Email"
-                placeholder={user.email}
+                placeholder={user().email}
                 value={email}
                 onChange={setEmail}
               />

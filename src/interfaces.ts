@@ -9,6 +9,7 @@ export interface IGame {
     platforms?: any,
     released?: string
     website?: string
+    added?: string
     // value?: string,
 }
 

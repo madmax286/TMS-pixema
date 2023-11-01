@@ -9,16 +9,14 @@ import { ButtonShowMore, GameCard, Loader, PageTemplate } from "../../components
 import "./home.css";
 
 const Home = () => {
-
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const games = useSelector(({ games }) => games);
+  const nextPageHome = useSelector(({ nextPageHome }) => nextPageHome);
   const isLoading = useSelector(({ isLoading }) => isLoading);
-
-  let randomPage = Math.floor(Math.random() * 200);
-
+  
   useEffect(() => {
     if (!games.length) {
-      dispatch(GET_GAMES(randomPage));
+      dispatch(GET_GAMES('1'));
     }    
   }, []);
 
@@ -31,14 +29,7 @@ const Home = () => {
               <div className="games-list">
                 {games.length &&
                   games.map(
-                    ({
-                      background_image,
-                      name,
-                      id,
-                      rating,
-                      slug,
-                      genres,
-                    }: IGame) => (
+                    ({background_image, name, id, rating, slug, genres, added, released}: IGame) => (
                       <GameCard
                         key={id}
                         id={id}
@@ -47,11 +38,13 @@ const Home = () => {
                         rating={rating}
                         slug={slug}
                         genres={genres}
+                        added={added}
+                        released={released}
                       />
                     )
                   )}
               </div>              
-              <ButtonShowMore onClick={() => dispatch(GET_GAMES(randomPage))}/>
+              <ButtonShowMore onClick={() => dispatch(GET_GAMES(nextPageHome))}/>
             </div>
           </PageTemplate>
         </div>

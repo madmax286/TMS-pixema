@@ -12,12 +12,11 @@ const Trends = () => {
   const trends = useSelector(({ trends }) => trends);
   const nextPageTrends = useSelector(({ nextPageTrends }) => nextPageTrends);
 
-  let randomPage = Math.floor(Math.random() * 100);
-  // useEffect(() => {
-  //   if (!trends.length) {
-  //     dispatch(GET_GAMES_TRENDS(randomPage));
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!trends.length) {
+      dispatch(GET_GAMES_TRENDS('1'));
+    }
+  }, []);
 
   return (
     <PageTemplate>
@@ -25,7 +24,7 @@ const Trends = () => {
         <div className="games-list">
           {trends.length &&
             trends.map(
-              ({ background_image, name, id, rating, slug, genres }: IGame) => (
+              ({ background_image, name, id, rating, slug, genres, added, released }: IGame) => (
                 <GameCard
                   key={id}
                   id={id}
@@ -34,6 +33,8 @@ const Trends = () => {
                   rating={rating}
                   slug={slug}
                   genres={genres}
+                  added={added}
+                  released={released}
                 />
               )
             )}
