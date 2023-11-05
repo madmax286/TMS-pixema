@@ -1,42 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { ModalMedia, PageTemplate } from "../../components";
-import { Player, BigPlayButton, LoadingSpinner, Shortcut, PlayToggle } from "video-react";
-import "./media.css";
+import { ReactComponent as PlayButton } from "../../assets/play-button.svg";
 import { ThunkDispatch } from "redux-thunk";
 import { AnyAction } from "redux";
-import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
+import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER } from "../../actions/actions";
+import "./media.css";
 
 const Media = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
-  
   const { slug, id } = useParams<{ slug: string; id: string }>();
-  const game = useSelector(({ game }) => game);
   const screenshots = useSelector(({ screenshots }) => screenshots);
   const trailer = useSelector(({ trailer }) => trailer);
-  const [modal, setModal] = useState(false)
-  // const [swiperInstance, setSwiperInstance] = useState();
-  // const [slideId, setSlideID] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [slideId, setSlideID] = useState(null);
 
   useEffect(() => {
-    // if (!game.length) dispatch(GET_SELECTED_GAME(id));
     if (!screenshots.length) dispatch(GET_GAME_SCREENSHOTS(id));
     if (!trailer.length) dispatch(GET_GAME_TRAILER(id));
   }, []);
 
-  // const media = [...screenshots[0], ...trailer[0]]
-  // console.log(media);  
-  // console.log(slideId);
-
   const modalOn = () => {
-    setModal(true)
-    // setSlideID(id)
-  }
+    setModal(true);
+  };
   const modalOff = () => {
-    setModal(false)
-  }
+    setModal(false);
+  };
 
   return (
     <>
@@ -51,31 +42,15 @@ const Media = () => {
                 <div></div>
               </div>
             </div>
-            {trailer.length && (
-              <div className="trailer-wrapper">
-                {/* <h3>Trailers</h3> */}
-                <div className="trailer-container">
-                  {trailer[0].map((e: any, id: number) => (
-                    <div onClick={
-                      modalOn
-                      // setSlideID(e.id)
-                      } key={id} className="trailer-content">
-                      <img src={e.preview} alt={e.preview} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
             {screenshots.length && (
               <div className="screenshots-wrapper">
-                {/* <h3>Screenshots</h3> */}
                 <div className="screenshots-container">
                   {screenshots[0].map((e: any, id: number) => (
                     <div
-                      onClick={
-                        modalOn
-                        // setSlideID(e.id)
-                        }
+                      onClick={() => {
+                        modalOn();
+                        setSlideID(e.id);
+                      }}
                       key={id}
                       className="game__screenshots-img"
                     >
@@ -89,11 +64,32 @@ const Media = () => {
                 </div>
               </div>
             )}
+            {trailer.length && (
+              <div className="trailer-wrapper">
+                <div className="trailer-container">
+                  {trailer[0].map((e: any, id: number) => (
+                    <div
+                      className="trailer-content"
+                      onClick={() => {
+                        modalOn();
+                        setSlideID(e.id);
+                      }}
+                      key={id}
+                    >
+                      <img src={e.preview} alt={e.preview} />
+                      <div className="icon-play">
+                        <PlayButton />
+                      </div>
+
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </PageTemplate>
       )}
-      {modal && <div onClick={modalOff} className="cl-btn-7"></div>}
-      {modal && <ModalMedia />}
+      {modal && <ModalMedia slideId={slideId} modalOff={modalOff}/>}
     </>
   );
 };

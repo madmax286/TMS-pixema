@@ -1,0 +1,10 @@
+export const ROUTE_HOME = '/games/home';
+export const ROUTE_TRENDS = '/games/trends';
+export const ROUTE_FAVORITES = '/games/favorites';
+export const ROUTE_SETTINGS = '/games/settings';
+export const ROUTE_SELECTED_GAME = '/game/:id/:slug';
+export const ROUTE_MEDIA = `${ROUTE_SELECTED_GAME}/media`;
+export const ROUTE_SEARCH_RESULT = '/games/search/:input';
+export const ROUTE_FILTER_PAGE = '/games/filter';
+export const ROUTE_SIGN_IN = '/signin';
+export const ROUTE_SIGN_UP = '/signup';

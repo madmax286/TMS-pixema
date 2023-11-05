@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AnyAction } from "redux";
@@ -6,7 +6,8 @@ import { ThunkDispatch } from "redux-thunk";
 import { GET_SELECTED_GAME } from "../../actions/actions";
 import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
 import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
-import { IGame } from "../../interfaces";
+import { IGame } from "../../utils/interfaces";
+import { convertDate } from "../../utils/helpers";
 import "./gameCard.css";
 
 const GameCard: FC<IGame> = ({
@@ -22,15 +23,14 @@ const GameCard: FC<IGame> = ({
   const navigate = useNavigate();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const ratingTop = useSelector(({ rating }) => rating);
+  const token = sessionStorage.getItem("token");
 
   const bookmark = () => {
     let arr = [];
     for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i));
     return arr.includes(`${id}`);
   };
-
-  const token = sessionStorage.getItem("token");
-
+  
   return (
     <div className="game__card">
       <img className="game__poster" src={background_image} alt={name} />
@@ -65,11 +65,11 @@ const GameCard: FC<IGame> = ({
         <div className="game__card-about">
           <div className="added-count">
             <h5>Added in libraries:</h5>
-            <h5>{added}</h5>
+            <h5>+{added}</h5>
           </div>
           <div className="realease-date">
             <h5>Release date:</h5>
-            <h5>{released}</h5>
+            <h5>{convertDate(`${released}`)}</h5>
           </div>
         </div>
       </div>

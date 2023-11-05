@@ -1,34 +1,28 @@
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LogoIcon from "../../assets/Logo.svg";
 import MenuLink from "../MenuLink/MenuLink";
-import { token } from "../../key";
-import { useNavigate } from "react-router-dom";
+import { token } from "../../utils/key";
+import { ROUTE_HOME } from "../../utils/routes";
 import "./menu.css";
 
 const Menu = () => {
-  // const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   return (
     <aside className="menu__wrapper">
-      <div
-        onClick={() => {
-          navigate("/games/home");
-        }}
-        className="menu__logo"
-      >
+      <div onClick={() => navigate(ROUTE_HOME)} className="menu__logo">
         <img src={LogoIcon} alt="pixema" />
       </div>
       <MenuLink text="Home" />
       <MenuLink text="Trends" />
       {token && <MenuLink text="Favorites" />}
-      {/* <MenuLink text="Favorites" /> */}
       <MenuLink text="Settings" />
       <span className="rights-reserved">
-        <span>© All Rights Reserved</span> <br /> 
-        <span>Created by</span> <br />
+        <span>Created by </span>
         <span>Maxim Kurhun</span>
-        </span>
+        <br />
+        <span>© All Rights Reserved</span>
+      </span>
     </aside>
   );
 };

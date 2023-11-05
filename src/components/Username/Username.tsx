@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Usericon } from "../../assets/user.svg";
-import { user } from "../../key";
+import { theme } from "../../utils/helpers";
+import { user } from "../../utils/key";
+import { ROUTE_SETTINGS, ROUTE_SIGN_IN } from "../../utils/routes";
 import "./username.css";
 
 const Username = () => {
@@ -15,11 +17,11 @@ const Username = () => {
 
   const onToggleUserName = () => {
     if (token) setOnClickUser(onClickUser => !onClickUser)
-    else navigate("/signin");
+    else navigate(ROUTE_SIGN_IN);
   };
 
   const editProfile = () => {
-    navigate("/games/settings");
+    navigate(ROUTE_SETTINGS);
   };
 
   const logOut = () => {
@@ -28,7 +30,7 @@ const Username = () => {
   };
 
   return (
-    <div onClick={onToggleUserName} className="username">
+    <div onClick={onToggleUserName} className={`username ${theme ? '' : 'light-theme'}`}>
       <div className="symbol-name">
         {token ? (
           <span>
@@ -48,7 +50,7 @@ const Username = () => {
         <span>Sign in</span>
       )}
       {onClickUser ?
-      <div className={`username-menu ${onClickUser ? 'active' : ''}`}>
+      <div className={`username-menu ${onClickUser ? 'active' : ''} ${theme ? '' : 'light-theme'}`}>
         <div onClick={editProfile} className="username-menu__edit">
           <span>Edit Profile</span>
         </div>

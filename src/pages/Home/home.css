@@ -12,7 +12,19 @@
     grid-template-columns: repeat(4, 1fr);   
     gap: 24px;
 }
-
+.games-list__header {
+    width: 100%;
+    margin-bottom: 20px;
+    color: white;
+}
+.games-list__header h3 {
+    font-weight: 400;
+}
+@media screen and (min-width: 3840px) {
+    .games-list {
+        grid-template-columns: repeat(5, 1fr);   
+    }
+}
 @media screen and (max-width: 1550px) {
     .games-list {
         grid-template-columns: repeat(3, 1fr);   

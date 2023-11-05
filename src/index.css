@@ -67,3 +67,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.light-theme {
+  background-color: whitesmoke;
+  color: black;
+}

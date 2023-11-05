@@ -1,12 +1,5 @@
-import React, {FC, useState, useRef, useEffect} from 'react'
-
-interface IInput {
-    label?: string,
-    placeholder?: string,
-    type: 'text' | 'textarea' | 'password' | 'email' | 'file',
-    value?: string,
-    onChange: (value: string) => void,
-}
+import { FC } from 'react'
+import { IInput } from '../../utils/interfaces';
 
 const Input: FC<IInput> = ({label, placeholder, type, value, onChange}) => {
   
@@ -14,7 +7,6 @@ const Input: FC<IInput> = ({label, placeholder, type, value, onChange}) => {
     <div className='input_container right'>
       <span className="label">{label}</span>
       <input
-        // ref={inputRef}
         type={type}
         placeholder={placeholder}
         value={value}

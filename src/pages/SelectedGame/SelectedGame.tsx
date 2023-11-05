@@ -1,15 +1,15 @@
-import React, { FC, useEffect, useState } from "react";
-import { Player, BigPlayButton } from "video-react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import {GET_GAME_SCREENSHOTS,GET_GAME_TRAILER,GET_SELECTED_GAME,} from "../../actions/actions";
-import { IGame } from "../../interfaces";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
 import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
 import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
-
+import { ReactComponent as PlayButton } from "../../assets/play-button.svg";
+import { convertDate } from "../../utils/helpers";
+import { IGame } from "../../utils/interfaces";
 import "./selectedGame.css";
 
 const SelectedGame = () => {
@@ -57,6 +57,10 @@ const SelectedGame = () => {
                 description_raw,
                 platforms,
                 released,
+                developers,
+                publishers,
+                esrb_rating,
+                updated,
                 website,
               }: IGame) => (
                 <main key={id} className="game-content">
@@ -67,7 +71,6 @@ const SelectedGame = () => {
                   />
                   <div className="game__media-container">
                     <img src={background_image} alt={slug} />
-                    {/* <p>Media</p> */}
                     <div className="game__media">
                       {screenshots.length &&
                         screenshots[0]
@@ -82,7 +85,9 @@ const SelectedGame = () => {
                           .map((e: any, id: number) => (
                             <div key={id} className="game__screenshots-img">
                               <img src={e.preview} alt={e.preview} />
-                              {/* <div className="icon-play"></div> */}
+                              <div className="icon-play">
+                                <PlayButton/>
+                              </div>
                             </div>
                           ))
                           .slice(0, 1)}
@@ -90,19 +95,12 @@ const SelectedGame = () => {
                         onClick={() => navigate(`/game/${id}/${slug}/media`)}
                         className="game__media__view-all"
                       >
-                        <span>...</span>
+                        <span>. . .</span>
                         <span>view all</span>
                       </div>
                     </div>
                   </div>
                   <div className="game__description">
-                    <div className="game__genres">
-                      {genres.length
-                        ? genres.map((e: any, id: number) => (
-                            <h5 key={id}>{e.name}</h5>
-                          ))
-                        : ""}
-                    </div>
                     <h1>{name}</h1>
                     <div className="rating-and-favorites">
                       <div
@@ -132,14 +130,71 @@ const SelectedGame = () => {
                       )}
                     </div>
                     <h4>{description_raw}</h4>
-                    <div className="game__platforms">
-                      {platforms.length &&
-                        platforms.map((e: any, id: number) => (
-                          <h5 key={id}>{e.platform.name}</h5>
-                        ))}
+                    <div className="game__meta">
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Platforms</div>
+                        <div className="game__meta-text">
+                          {platforms.length &&
+                            platforms.map((e: any, id: number) => (
+                              <h5 key={id}>{e.platform.name}</h5>
+                            ))}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Genre</div>
+                        <div className="game__meta-text">
+                          {genres.length
+                            ? genres.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Release date</div>
+                        <div className="game__meta-text">
+                          {convertDate(`${released}`)}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Last Modified</div>
+                        <div className="game__meta-text">
+                          {convertDate(`${updated}`)}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Developer</div>
+                        <div className="game__meta-text">
+                          {developers
+                            ? developers.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Publisher</div>
+                        <div className="game__meta-text">
+                          {publishers
+                            ? publishers.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Age rating</div>
+                        <div className="game__meta-text">
+                          {esrb_rating && esrb_rating.name}
+                        </div>
+                      </div>
+                      <div className="game__meta-block game__meta-block_wide">
+                        <div className="game__meta-title">Website</div>
+                        <div className="game__meta-text">
+                          <a href={website}>{website}</a>
+                        </div>
+                      </div>
                     </div>
-                    <h4>Release date: {released}</h4>
-                    <a href={website}>{website}</a>
                   </div>
                 </main>
               )

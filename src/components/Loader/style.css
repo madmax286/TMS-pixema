@@ -1,68 +1,61 @@
-/* .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    z-index: 50;
-}  
-  .spinner {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border: 8px solid #3498db;
-    border-top: 8px solid transparent;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-  }  
-  .spinner-inner {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    top: 10px;
-    left: 10px;
-    border: 8px solid #fff;
-    border-radius: 50%;
-  }  
-  .spinner-text {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #555;
-  }  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  } */
   .loader-container {
-    position: absolute;
-    width: calc(100% - 18vw);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2%;
-    margin: 152px 4vw 40px 18vw;
+    margin: 162px 3vw 20px 220px;
+    width: 100%;
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
   }
+
   .loader-skeleton {
     border-radius: 10px;
     margin-bottom: 10px;
     z-index: 9;
-    width: 25vw;
+    width: 100%;
     height: 220px;
     background:
-        linear-gradient(0.25turn, transparent, #484848, transparent),
-        linear-gradient(#595959, #595959),
-        linear-gradient(#595959, #595959),
-        linear-gradient(#595959, #595959);
+      linear-gradient(0.25turn, transparent, #484848, transparent),
+      linear-gradient(#595959, #595959),
+      linear-gradient(#595959, #595959),
+      linear-gradient(#595959, #595959);
     background-color: inherit;
     background-repeat: no-repeat;
-    background-size: 25vw 220px, 25vw 130px, 100px 15px, 150px 15px;
+    background-size: 100% 220px, 100% 130px, 100px 15px, 150px 15px;
     background-position: -25vw 0, 0 0, 15px 150px, 15px 180px;
     animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  to {
-    background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
   }
-}
+
+  @keyframes loading {
+    to {
+      background-position: 215px 0, 0 0, 15px 150px, 15px 180px;
+    }
+  }
+
+  @media screen and (min-width: 3840px) {
+    .loader-container {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1550px) {
+    .loader-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 1285px) {
+    .loader-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .loader-skeleton {
+      height: 300px;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }

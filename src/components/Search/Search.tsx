@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GET_GENRES, GET_PLATFORMS, GET_SEARCH } from '../../actions/actions';
@@ -9,21 +9,19 @@ import Filters from '../Filters/Filters';
 import './search.css'
 
 const Search = () => {
+  const { input } = useParams<{ input: string }>();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const navigate = useNavigate();
-  
-  const theme = useSelector(({ theme }) => theme);
-  const [open, setOpen] = useState<boolean>(false);
   const node = useRef<HTMLDivElement>(null);
   const close = () => setOpen(false);
-
+  const [open, setOpen] = useState<boolean>(false);
   const [search, setSearch] = useState("");
 
-  const handleKeyDown = (event: { key: string; }) => {
+  const handleKeyDown = (event: { key: string; }) => {    
     if (event.key === 'Enter') {
       if (search.trim().length > 0) dispatch(GET_SEARCH(search, navigate))
       dispatch(GET_GENRES());
-      dispatch(GET_PLATFORMS());      
+      dispatch(GET_PLATFORMS());
     }
   };
 
@@ -32,11 +30,8 @@ const Search = () => {
       <div className="search-input">
         <input
           onKeyDown={handleKeyDown}
-          onClick={() => {
-            dispatch({ type: "SET_FOCUS", payload: true });
-          }}
           type="search"
-          placeholder="Search..."
+          placeholder={input || "Search"}
           value={search}
           onChange={(e) => setSearch(e.currentTarget.value)}
         />

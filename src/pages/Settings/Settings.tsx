@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input, PageTemplate } from "../../components";
-import { token, user } from "../../key";
+import { token, user } from "../../utils/key";
+import { ROUTE_HOME } from "../../utils/routes";
 import "./settings.css";
+import { theme } from "../../utils/helpers";
 
 const Settings = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Settings = () => {
 
   const toggleTheme = () => {
     setDarkTheme((prevValue: boolean) => !prevValue);
+    window.location.reload()
   };
 
   let changeUser = {
@@ -28,16 +31,16 @@ const Settings = () => {
 
   const onChangeBtn = () => {
     if (
-      firstName.length > 1 ||
-      lastName.length > 1 ||
-      email.length > 3 ||
-      email.includes("@") ||
-      newPassword.length > 2 ||
-      newPassword === confirmPassword ||
+      firstName.length > 1 &&
+      lastName.length > 1 &&
+      email.length > 3 &&
+      email.includes("@") &&
+      newPassword.length > 2 &&
+      newPassword === confirmPassword &&
       password === user().password
     ) {
       localStorage.setItem("user", JSON.stringify(changeUser));
-      navigate("/games/home");
+      window.location.reload()
     } else {
       alert("Incorrect input data");
     }
@@ -45,7 +48,7 @@ const Settings = () => {
 
   return (
     <PageTemplate>
-      <div className="settings_wrapper">
+      <div className={`settings_wrapper ${theme ? "" : "light-theme"}`}>
         {token && (
           <>
             <h3>Profile</h3>
@@ -54,14 +57,12 @@ const Settings = () => {
                 type="text"
                 label="First name"
                 placeholder={user().firstName}
-                // value={firstName}
                 onChange={setFirstName}
               />
               <Input
                 type="text"
                 label="Last name"
                 placeholder={user().lastName}
-                // value={lastName}
                 onChange={setLastName}
               />
               <Input
@@ -100,13 +101,20 @@ const Settings = () => {
             </div>
           </>
         )}
-
         <h3>Color mode</h3>
         <div className="color-mode_container">
-          <div className="theme-name">
-            <h4>Dark</h4>
-            <h4>Use dark theme</h4>
-          </div>
+          {theme ? (
+            <div className="theme-name">
+              <h4>Dark</h4>
+              <h4>Use dark theme</h4>
+            </div>
+          ) : (
+            <div className="theme-name">
+              <h4>Light</h4>
+              <h4>Use light theme</h4>
+            </div>
+          )}
+
           <label id="switch" className="switch">
             <input
               type="checkbox"
@@ -116,18 +124,20 @@ const Settings = () => {
             <span className="slider round"></span>
           </label>
         </div>
-        <div className="buttons_container">
-          <button
-            onClick={() => navigate("/games/home")}
-            className="btn-cancel"
-            type="button"
-          >
-            Cancel
-          </button>
-          <button onClick={onChangeBtn} className="btn-save" type="button">
-            Save
-          </button>
-        </div>
+        {token && (
+          <div className="buttons_container">
+            <button
+              onClick={() => navigate(ROUTE_HOME)}
+              className="btn-cancel"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button onClick={onChangeBtn} className="btn-save" type="button">
+              Save
+            </button>
+          </div>
+        )}
       </div>
     </PageTemplate>
   );

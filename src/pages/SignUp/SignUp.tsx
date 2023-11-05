@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input } from "../../components";
 import PageTemplateSign from "../../components/PageTemplateSign/PageTemplateSign";
-import { apiKeyRawg } from "../../key";
+import { ROUTE_SIGN_IN } from "../../utils/routes";
 
 const SignUp = () => {
   const navigate = useNavigate();
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ const SignUp = () => {
     email: email,
     password: password
   }
-  const onClickSignUp = async () => {
+  const onClickSignUp = () => {
     if (
       firstName.trim().length > 1 &&
       lastName.trim().length > 1 &&
@@ -29,11 +28,9 @@ const SignUp = () => {
       password === confirmPassword
     ) {
       localStorage.setItem("user", JSON.stringify(user));
-      // sessionStorage.setItem("token", `${apiKeyRawg}`);
-      navigate("/signin");
+      navigate(ROUTE_SIGN_IN);
       alert('Вы успешно зарегистрированы!\nВы будете переадресованы на страницу входа')
       window.location.reload()
-
     } 
     else {
       alert("Incorrect input data");
@@ -85,7 +82,7 @@ const SignUp = () => {
           </button>
           <div className="signup">
             <span>Already have an account?</span>
-            <Link to={"/signin"}>Sign In</Link>
+            <Link to={ROUTE_SIGN_IN}>Sign In</Link>
           </div>
         </div>
       </PageTemplateSign>

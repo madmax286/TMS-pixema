@@ -11,20 +11,18 @@ const initialState = {
   platforms: [],
   trends: [],
   favorites: [],
+  filter: [],
+  search: [],
+  nextResult: [],
+  totalCount: null,
+  nextPage: '',
   rating: 'top',
   isLoading: false,
-  activeMenu: '',
-  nextPageTrends: '',
-  nextPageHome: '',
-  nextSearch: '',
-  nextPage: '',
-  search: [],
-  onFocus: false,
+  isLoadingSpinner: false,
   openFliter: false,
-  filter: [],
-  nextFilter: '',
-  genreID: '',
-  platformID: '',
+  activeMenu: '',
+  // genreID: '',
+  // platformID: '',
   selectedGenre: '',
   selectedPlatform: ''
 };
@@ -34,7 +32,7 @@ const rootReducer = (state: any = initialState, action: any) => {
     case "SET_GAMES": {
       return {
         ...state,
-        games: [...state.games, ...action.payload],
+        games: [...action.payload],
       };
     }
     case "SET_SELECTED_GAME": {
@@ -61,6 +59,18 @@ const rootReducer = (state: any = initialState, action: any) => {
         genres: action.payload,
       };
     }
+    case "SET_TOTAL_COUNT": {
+      return {
+        ...state,
+        totalCount: action.payload,
+      };
+    }
+    case "SET_TOTAL_SEARCH_COUNT": {
+      return {
+        ...state,
+        totalSearchCount: action.payload,
+      };
+    }
     case "SET_FAVORITES": {
       return {
         ...state,
@@ -79,92 +89,78 @@ const rootReducer = (state: any = initialState, action: any) => {
         trends: [...state.trends, ...action.payload],
       };
     }
-    case "SET_ACTIVE_MENU" : {
+    case "SET_ACTIVE_MENU": {
       return {
         ...state,
         activeMenu: action.payload,
       };
     }
-    case "SET_OPEN_FILTER" : {
+    case "SET_OPEN_FILTER": {
       return {
         ...state,
         openFliter: action.payload,
       };
     }
-    case "SET_NEXT_PAGE_HOME" : {
+    case "SET_NEXT_PAGE": {
       return {
         ...state,
-        nextPageHome: action.payload,
+        nextPage: action.payload,
       };
     }
-    case "SET_NEXT_PAGE_TRENDS" : {
+    case "SET_NEXT_RESULT": {
       return {
         ...state,
-        nextPageTrends: action.payload,
+        nextResult: [...state.nextResult, ...action.payload],
       };
     }
-    case "SET_NEXT_SEARCH" : {
+    case "SET_SEARCH": {
       return {
         ...state,
-        nextSearch: action.payload,
+        search: action.payload,
       };
     }
-    case "SET_SEARCH" : {
+    case "SET_FILTER_RESULTS": {
       return {
         ...state,
-        // search: action.payload,
-        search: [...state.search, ...action.payload],
+        filter: [...action.payload],
       };
     }
-    case "SET_FILTER_RESULTS" : {
-      return {
-        ...state,
-        // filter: [...action.payload],
-        filter: [...state.filter.concat(action.payload)],
-      };
-    }
-    case "SET_NEXT_FILTER_PAGE" : {
-      return {
-        ...state,
-        nextFilter: action.payload,
-      };
-    }
-    case 'SET_LOADING': {
+    case "SET_LOADING": {
       return {
         ...state,
         isLoading: !state.isLoading,
       };
     }
-    case 'SET_FOCUS': {
+    case "SET_LOADING_SPINNER": {
       return {
         ...state,
-        onFocus: action.payload,
+        isLoadingSpinner: !state.isLoadingSpinner,
       };
     }
-    case "SET_GENRE_ID" : {
-      return {
-        ...state,
-        genreID: action.payload,
-      };
-    }    
-    case "SET_SELECTED_GENRE" : {
+    // case "SET_GENRE_ID" : {
+    //   return {
+    //     ...state,
+    //     genreID: action.payload,
+    //   };
+    // }
+    case "SET_SELECTED_GENRE": {
       return {
         ...state,
         selectedGenre: action.payload,
       };
     }
-    case "SET_SELECTED_PLATFORM" : {
+    case "SET_SELECTED_PLATFORM": {
       return {
         ...state,
         selectedPlatform: action.payload,
       };
     }
-    case "SET_PLATFORM_ID" : {
-      return {
-        ...state,
-        platformID: action.payload,
-      };
-    }
+    // case "SET_PLATFORM_ID" : {
+    //   return {
+    //     ...state,
+    //     platformID: action.payload,
+    //   };
+    // }
     default:
       return state;
   }

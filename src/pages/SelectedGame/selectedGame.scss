@@ -1,81 +1,57 @@
 .game-content {
-    // width: 100%;
-    max-width: 1280px;
-    height: 100%;
+    // max-width: 1280px;
+    // height: 100%;
+    width: 100%;
     display: flex;
+    align-self: center;
     justify-content: space-between;
     color: white;
-    margin: 152px 3vw 10vh 18vw;
+    margin: 140px 3vw 20px 220px;
+    padding-left: 4vw;
 
     @media screen and (max-width: 1450px) {
-        max-width: 960px;
+        padding: 0;
     }
+
     .game__media-container {
         display: flex;
         flex-direction: column;
         width: 49%;
-    
+
         img {
             margin-bottom: 2%;
             border-radius: 10px;
         }
+
         .game__media {
             width: 100%;
             display: grid;
             justify-content: center;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: repeat(2, 1fr);
             gap: 4% 2%;
             padding: 20px 0;
-        
+
+            @media screen and (max-width: 1450px) {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+
+            }        
+
             .game__screenshots-img {
                 border-radius: 10px;
                 position: relative;
-                
+
                 .icon-play {
                     position: absolute;
-                    width: 100px;
-                    height: 100px;
-                    border: solid 2px white;
-                    border-radius: 100px;
-                    top: 0;
-                    left: 0;
-                    
-                    &:before {
-                      content: "";
-                      width: 34px;
-                      height: 53px;
-                      border-left: 2px solid white;
-                      border-radius: 5px;
-                      position: absolute;
-                      top: 23px;
-                      left: 37px;
-                    }
-                    
-                    &:after {
-                      content: "";
-                      position: absolute;
-                      top: 27px;
-                      left: 19px;
-                      width: 42px;
-                      height: 42px;
-                      transform: rotate(45deg) skew(-5deg, -5deg);
-                      border-top: 2px solid white;
-                      border-right: 2px solid white;
-                      border-radius: 5px;
-                    }
-                    
-                    &:hover {
-                      background-color: rgba(0, 0, 0, 0.5);
-                    }
-                }
-
-                &:hover {
-                    // cursor: pointer;
-                    box-shadow: 0 0 40px 10px #7B61FF;
+                    top: 5%;
+                    left: 2%;
+                    width: 30%;
+                    height: 50%;
                 }
             }
+
             .game__media__view-all {
+                height: 100%;
                 color: #80858B;
                 background-color: #242426;
                 border-radius: 10px;
@@ -84,31 +60,79 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                
+
                 &:hover {
                     cursor: pointer;
                     color: #242426;
-                    background-color: #80858B;   
+                    background-color: #80858B;
                 }
             }
-        }    
+        }
     }
-    
+
     .game__description {
         width: 49%;
         display: flex;
         flex-direction: column;
         margin: 0;
 
+        .game__meta {
+            display: flex;
+            flex-wrap: wrap;
+            
+            .game__meta-block {
+                width: 50%;
+                text-align: left;
+                margin-bottom: 16px;
+
+                a {
+                    display: flex;
+                    color: #AFB2B6;
+                }
+
+                &:nth-child(2n+1) {
+                    padding-right: 8px;
+                }
+
+                .game__meta-title {
+                    margin-bottom: 8px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: rgba(255, 255, 255, 0.4);
+                }
+
+                .game__meta-text {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    h5 {
+                        margin-right: 10px;
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+                    h5:not(:last-child) {
+                        &::after {
+                            content: ',';
+                        }
+                    }
+                }
+            }
+            .game__meta-block_wide {
+                width: 100%;
+            }
+
+        }
+
         .rating-and-favorites {
             display: flex;
+            width: 100%;
         }
-        
+
         .add-to-favorites {
             background-color: #323537;
             border-radius: 6px;
             border: none;
-            width: 7vw;
+            width: 12%;
             height: 30px;
             display: flex;
             justify-content: center;
@@ -119,39 +143,31 @@
                 fill: white;
             }
         }
-        .game__genres, a {
-            display: flex;
-            color: #AFB2B6;
-    
-            h5 {
-                margin-right: 2%;
-                font-weight: 500;
-            }
-        }
-        .game__platforms {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            color: #AFB2B6;
-            h5 {
-                margin-bottom: 2%;
-                font-weight: 500;
-            }
-        }
+
         h1 {
-            font-size: 50px;
+            font-size: 55px;
+            margin-bottom: 20px;
+            line-height: normal;
+            
+            @media screen and (max-width: 1450px) {
+                font-size: 35px;
+            }
         }
-        h1, h4 {
+
+        h4 {
             margin: 20px 0 20px 0;
         }
+
         h4 {
             font-weight: 500;
             display: -webkit-box;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 10;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .game__description-rating {
-            width: 7vw;
+            width: 15%;
             height: 30px;
             border-radius: 6px;
             background-color: #00A340;
@@ -163,21 +179,25 @@
 
             .trends-icon {
                 fill: white;
-                height: 80%;   
+                height: 80%;
             }
         }
+
         .top {
             background-color: #7B61FF;
         }
+
         .bookmark {
             fill: #7B61FF;
+
             &:hover {
                 fill: #7B61FF;
             }
         }
+
         a {
             margin-bottom: 20px;
-        }    
+        }
     }
 }
 

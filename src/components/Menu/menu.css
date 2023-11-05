@@ -43,8 +43,9 @@
 .menu__wrapper .rights-reserved {
   position: absolute;
   left: 20px;
-  bottom: 4vh;
+  bottom: 20px;
   font-weight: 400;
+  font-size: 12px;
 }
 .menu__wrapper .active {
   color: #917CFF;

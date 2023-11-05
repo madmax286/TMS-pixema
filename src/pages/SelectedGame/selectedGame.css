@@ -1,14 +1,15 @@
 .game-content {
-  max-width: 1280px;
-  height: 100%;
+  width: 100%;
   display: flex;
+  align-self: center;
   justify-content: space-between;
   color: white;
-  margin: 152px 3vw 10vh 18vw;
+  margin: 140px 3vw 20px 220px;
+  padding-left: 4vw;
 }
 @media screen and (max-width: 1450px) {
   .game-content {
-    max-width: 960px;
+    padding: 0;
   }
 }
 .game-content .game__media-container {
@@ -25,9 +26,14 @@
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 4% 2%;
   padding: 20px 0;
+}
+@media screen and (max-width: 1450px) {
+  .game-content .game__media-container .game__media {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 }
 .game-content .game__media-container .game__media .game__screenshots-img {
   border-radius: 10px;
@@ -35,42 +41,13 @@
 }
 .game-content .game__media-container .game__media .game__screenshots-img .icon-play {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  border: solid 2px white;
-  border-radius: 100px;
-  top: 0;
-  left: 0;
-}
-.game-content .game__media-container .game__media .game__screenshots-img .icon-play:before {
-  content: "";
-  width: 34px;
-  height: 53px;
-  border-left: 2px solid white;
-  border-radius: 5px;
-  position: absolute;
-  top: 23px;
-  left: 37px;
-}
-.game-content .game__media-container .game__media .game__screenshots-img .icon-play:after {
-  content: "";
-  position: absolute;
-  top: 27px;
-  left: 19px;
-  width: 42px;
-  height: 42px;
-  transform: rotate(45deg) skew(-5deg, -5deg);
-  border-top: 2px solid white;
-  border-right: 2px solid white;
-  border-radius: 5px;
-}
-.game-content .game__media-container .game__media .game__screenshots-img .icon-play:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.game-content .game__media-container .game__media .game__screenshots-img:hover {
-  box-shadow: 0 0 40px 10px #7B61FF;
+  top: 5%;
+  left: 2%;
+  width: 30%;
+  height: 50%;
 }
 .game-content .game__media-container .game__media .game__media__view-all {
+  height: 100%;
   color: #80858B;
   background-color: #242426;
   border-radius: 10px;
@@ -91,14 +68,52 @@
   flex-direction: column;
   margin: 0;
 }
+.game-content .game__description .game__meta {
+  display: flex;
+  flex-wrap: wrap;
+}
+.game-content .game__description .game__meta .game__meta-block {
+  width: 50%;
+  text-align: left;
+  margin-bottom: 16px;
+}
+.game-content .game__description .game__meta .game__meta-block a {
+  display: flex;
+  color: #AFB2B6;
+}
+.game-content .game__description .game__meta .game__meta-block:nth-child(2n+1) {
+  padding-right: 8px;
+}
+.game-content .game__description .game__meta .game__meta-block .game__meta-title {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.4);
+}
+.game-content .game__description .game__meta .game__meta-block .game__meta-text {
+  display: flex;
+  flex-wrap: wrap;
+}
+.game-content .game__description .game__meta .game__meta-block .game__meta-text h5 {
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.game-content .game__description .game__meta .game__meta-block .game__meta-text h5:not(:last-child)::after {
+  content: ",";
+}
+.game-content .game__description .game__meta .game__meta-block_wide {
+  width: 100%;
+}
 .game-content .game__description .rating-and-favorites {
   display: flex;
+  width: 100%;
 }
 .game-content .game__description .add-to-favorites {
   background-color: #323537;
   border-radius: 6px;
   border: none;
-  width: 7vw;
+  width: 12%;
   height: 30px;
   display: flex;
   justify-content: center;
@@ -108,38 +123,28 @@
 .game-content .game__description .add-to-favorites:hover {
   fill: white;
 }
-.game-content .game__description .game__genres, .game-content .game__description a {
-  display: flex;
-  color: #AFB2B6;
-}
-.game-content .game__description .game__genres h5, .game-content .game__description a h5 {
-  margin-right: 2%;
-  font-weight: 500;
-}
-.game-content .game__description .game__platforms {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  color: #AFB2B6;
-}
-.game-content .game__description .game__platforms h5 {
-  margin-bottom: 2%;
-  font-weight: 500;
-}
 .game-content .game__description h1 {
-  font-size: 50px;
+  font-size: 55px;
+  margin-bottom: 20px;
+  line-height: normal;
 }
-.game-content .game__description h1, .game-content .game__description h4 {
+@media screen and (max-width: 1450px) {
+  .game-content .game__description h1 {
+    font-size: 35px;
+  }
+}
+.game-content .game__description h4 {
   margin: 20px 0 20px 0;
 }
 .game-content .game__description h4 {
   font-weight: 500;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .game-content .game__description .game__description-rating {
-  width: 7vw;
+  width: 15%;
   height: 30px;
   border-radius: 6px;
   background-color: #00A340;
