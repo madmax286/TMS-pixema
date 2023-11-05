@@ -1,0 +1,99 @@
+.media-wrapper {
+    width: calc(100% - 18vw);
+    margin: 152px 3vw 20px 220px;
+    display: flex;
+    flex-direction: column;
+
+    .media-header {
+        position: relative;
+        .arrow-1 {
+            position: absolute;
+            top: -30px;
+            z-index: 11;
+            width: 50px;
+            height: 30px;
+            &:hover {
+                cursor: pointer;
+            }
+            div {
+                position: relative;
+                top: 13px;
+                width: 30px;
+                height: 2px;
+                background-color: #80858B;
+                left:0;
+                display: block;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 10px;
+                    height: 2px;
+                    top: -3px;
+                    left: -2px;
+                    background-color: inherit;
+                    transform: rotate(-45deg);
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 10px;
+                    height: 2px;
+                    top: 3px;
+                    left: -2px;
+                    background-color: inherit;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+    .trailer-wrapper,
+    .screenshots-wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+
+        h3 {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+    }
+
+    .trailer-container,
+    .screenshots-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1vw;
+
+        .media-content,
+        .trailer-content {
+            border-radius: 10px;
+            position: relative;
+            .icon-play {
+                position: absolute;
+                top: 5%;
+                left: 2%;
+                width: 30%;
+                height: 50%;
+            }
+
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 5px #7B61FF;
+            }
+        }
+    }
+}
+.background_image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+    opacity: 0.1;
+    object-fit: cover;
+}

@@ -1,32 +1,38 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiKeyRawg } from "../../axiosConfig";
 import { Input } from "../../components";
 import PageTemplateSign from "../../components/PageTemplateSign/PageTemplateSign";
+import { ROUTE_SIGN_IN } from "../../utils/routes";
 
 const SignUp = () => {
   const navigate = useNavigate();
-
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // [{ name: name, email: email, password: password, token: apiKeyRawg }];
-
+  let user = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: password
+  }
   const onClickSignUp = () => {
     if (
-      name.length > 1 &&
-      email.length > 1 &&
-      password.length > 1 &&
+      firstName.trim().length > 1 &&
+      lastName.trim().length > 1 &&
+      email.trim().length > 3 &&
+      email.includes('@') &&
+      password.length > 2 &&
       password === confirmPassword
     ) {
-      navigate("/games/home");
-      sessionStorage.setItem("username", `${name}`);
-      sessionStorage.setItem("email", `${email}`);
-      sessionStorage.setItem("password", `${password}`);
-      sessionStorage.setItem("token", `${apiKeyRawg}`);
-    } else {
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate(ROUTE_SIGN_IN);
+      alert('Вы успешно зарегистрированы!\nВы будете переадресованы на страницу входа')
+      window.location.reload()
+    } 
+    else {
       alert("Incorrect input data");
     }
   };
@@ -38,10 +44,17 @@ const SignUp = () => {
           <h1>Sign Up</h1>
           <Input
             type="text"
-            label="Name"
-            placeholder="Your name"
-            value={name}
-            onChange={setName}
+            label="First name"
+            placeholder="Your first name"
+            value={firstName}
+            onChange={setFirstName}
+          />
+          <Input
+            type="text"
+            label="Last name"
+            placeholder="Your last name"
+            value={lastName}
+            onChange={setLastName}
           />
           <Input
             type="email"
@@ -64,16 +77,12 @@ const SignUp = () => {
             value={confirmPassword}
             onChange={setConfirmPassword}
           />
-          <button
-            type="button"
-            className="btn-signin"
-            onClick={onClickSignUp}
-          >
+          <button type="button" className="btn-signin" onClick={onClickSignUp}>
             Sign Un
           </button>
           <div className="signup">
             <span>Already have an account?</span>
-            <Link to={"/signin"}>Sign In</Link>
+            <Link to={ROUTE_SIGN_IN}>Sign In</Link>
           </div>
         </div>
       </PageTemplateSign>

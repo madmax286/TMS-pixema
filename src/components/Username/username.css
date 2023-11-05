@@ -1,9 +1,96 @@
 .username {
+    flex-grow: 1;
+    margin: 0 3vw 0 1vw;
     color: white;
     font-size: 16px;
     font-weight: 600;
     height: 56px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.username:hover {
+    cursor: pointer;
+}
+
+.symbol-name {
+    background-color: #7B61FF;
+    height: 100%;
+    width: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.username-menu {
+    width: 100%;
+    position: absolute;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    background-color: #242426;
+    border-radius: 10px;
+    animation: ani .7s forwards;
+}
+@keyframes ani {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.username-menu__edit,
+.username-menu__log-out {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    transition: .3s;
+}
+
+.username-menu__edit {
+    border-bottom: 1px solid #323537;
+}
+
+.username-menu__edit:hover,
+.username-menu__log-out:hover {
+    cursor: pointer;
+    color: #7B61FF;
+}
+
+.full-name {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.first-name {
+    margin-right: 5px;
+}
+
+.arrow-container {
+    height: 100%;
+    width: 5%;
+    position: relative;
+    transition: all 0.2s linear;
+}
+
+.arrow {
+    content: "";
+    position: absolute;
+    top: 24px;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #80858B;
+    border-left: 2px solid #80858B;
+    transform: rotate(135deg);
+    transition: all 0.2s linear;
+}
+
+.rotate-arrow {
+    transform: rotate(225deg);
+    border-top: 2px solid white;
+    border-left: 2px solid white;
 }

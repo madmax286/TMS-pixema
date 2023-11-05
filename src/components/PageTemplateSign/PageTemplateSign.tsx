@@ -1,7 +1,8 @@
-import React, { ReactNode, FC } from "react";
-import { useSelector } from "react-redux";
+import { ReactNode, FC } from "react";
 import LogoIcon from "../../assets/Logo.svg";
-import Background from "../../assets/Background.jpg";
+import Background from "../../assets/Background2.jpg";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_HOME } from "../../utils/routes";
 import "./pageTemplateSign.css";
 
 interface IPageTemplateSign {
@@ -9,14 +10,17 @@ interface IPageTemplateSign {
 }
 
 const PageTemplateSign: FC<IPageTemplateSign> = ({ children }) => {
-  const isLoading = useSelector(({ isLoading }) => isLoading);
+  const navigate = useNavigate();
 
   return (
     <>
-      <div className="wrapper__sign">
-        <img className="logo-image" src={LogoIcon} alt="" />
-        <img className="background-image" src={Background} alt="" />
-      </div>
+      <img
+        onClick={() => navigate(ROUTE_HOME)}
+        className="logo-image"
+        src={LogoIcon}
+        alt="logo-image"
+      />
+      <img className="background-image" src={Background} alt="" />
       {children}
     </>
   );

@@ -1,0 +1,103 @@
+.media-wrapper {
+  width: calc(100% - 18vw);
+  margin: 152px 3vw 20px 220px;
+  display: flex;
+  flex-direction: column;
+}
+.media-wrapper .media-header {
+  position: relative;
+}
+.media-wrapper .media-header .arrow-1 {
+  position: absolute;
+  top: -30px;
+  z-index: 11;
+  width: 50px;
+  height: 30px;
+}
+.media-wrapper .media-header .arrow-1:hover {
+  cursor: pointer;
+}
+.media-wrapper .media-header .arrow-1 div {
+  position: relative;
+  top: 13px;
+  width: 30px;
+  height: 2px;
+  background-color: #80858B;
+  left: 0;
+  display: block;
+}
+.media-wrapper .media-header .arrow-1 div::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  top: -3px;
+  left: -2px;
+  background-color: inherit;
+  transform: rotate(-45deg);
+}
+.media-wrapper .media-header .arrow-1 div::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  top: 3px;
+  left: -2px;
+  background-color: inherit;
+  transform: rotate(45deg);
+}
+.media-wrapper .trailer-wrapper,
+.media-wrapper .screenshots-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.media-wrapper .trailer-wrapper h3,
+.media-wrapper .screenshots-wrapper h3 {
+  color: white;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.media-wrapper .trailer-container,
+.media-wrapper .screenshots-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1vw;
+}
+.media-wrapper .trailer-container .media-content,
+.media-wrapper .trailer-container .trailer-content,
+.media-wrapper .screenshots-container .media-content,
+.media-wrapper .screenshots-container .trailer-content {
+  border-radius: 10px;
+  position: relative;
+}
+.media-wrapper .trailer-container .media-content .icon-play,
+.media-wrapper .trailer-container .trailer-content .icon-play,
+.media-wrapper .screenshots-container .media-content .icon-play,
+.media-wrapper .screenshots-container .trailer-content .icon-play {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  width: 30%;
+  height: 50%;
+}
+.media-wrapper .trailer-container .media-content:hover,
+.media-wrapper .trailer-container .trailer-content:hover,
+.media-wrapper .screenshots-container .media-content:hover,
+.media-wrapper .screenshots-container .trailer-content:hover {
+  cursor: pointer;
+  box-shadow: 0 0 20px 5px #7B61FF;
+}
+
+.background_image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+  opacity: 0.1;
+  object-fit: cover;
+}

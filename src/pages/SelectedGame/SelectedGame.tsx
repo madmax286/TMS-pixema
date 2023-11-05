@@ -1,20 +1,23 @@
-import React, { FC, useEffect, useState } from "react";
-import { Player } from 'video-react';
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
-import { IGame } from "../../interfaces";
 import PageTemplate from "../../components/PageTemplate/PageTemplate";
+import { GET_GAME_SCREENSHOTS, GET_GAME_TRAILER, GET_SELECTED_GAME } from "../../actions/actions";
 import { ReactComponent as TrendsIcon } from "../../assets/Trends.svg";
 import { ReactComponent as Bookmark } from "../../assets/Bookmark.svg";
+import { ReactComponent as PlayButton } from "../../assets/play-button.svg";
+import { convertDate } from "../../utils/helpers";
+import { IGame } from "../../utils/interfaces";
 import "./selectedGame.css";
 
 const SelectedGame = () => {
   const { slug, id } = useParams<{ slug: string; id: string }>();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const navigate = useNavigate();
+  const token = sessionStorage.getItem("token");
+
   const ratingTop = useSelector(({ rating }) => rating);
   const game = useSelector(({ game }) => game);
   const screenshots = useSelector(({ screenshots }) => screenshots);
@@ -23,22 +26,20 @@ const SelectedGame = () => {
   useEffect(() => {
     if (!game.length) dispatch(GET_SELECTED_GAME(id, slug, navigate));
     dispatch(GET_GAME_SCREENSHOTS(id));
-    dispatch(GET_GAME_TRAILER(id))
+    dispatch(GET_GAME_TRAILER(id));
   }, []);
 
   const bookmark = () => {
-    let arr = []
-    for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i))
-    return arr.includes(`${id}`)
-  }
+    let arr = [];
+    for (let i = 0; i < localStorage.length; i++) arr.push(localStorage.key(i));
+    return arr.includes(`${id}`);
+  };    
   
-  const addBookmark = () => {    
-    if (bookmark()) localStorage.removeItem(`${id}`)
+  const addBookmark = async () => {    
+    if (bookmark()) localStorage.removeItem(`${id}`);
     else localStorage.setItem(`${id}`, JSON.stringify(game));
-    window.location.reload() 
+    window.location.reload();
   };
-
-  const token = sessionStorage.getItem("token");
 
   return (
     <>
@@ -56,35 +57,50 @@ const SelectedGame = () => {
                 description_raw,
                 platforms,
                 released,
+                developers,
+                publishers,
+                esrb_rating,
+                updated,
                 website,
               }: IGame) => (
                 <main key={id} className="game-content">
-                  <div className="game__screenshots-container">
+                  <img
+                    className="background_image"
+                    src={background_image}
+                    alt={slug}
+                  />
+                  <div className="game__media-container">
                     <img src={background_image} alt={slug} />
-                    <p>Screenshots</p>
-                    <div className="game__screenshots">
+                    <div className="game__media">
                       {screenshots.length &&
-                        screenshots[0].map((e: any, id: number) => (
-                          <div key={id} className="game__screenshots-img">
-                            <img src={e.image} alt={e.image} />
-                          </div>
-                        ))}
+                        screenshots[0]
+                          .map((e: any, id: number) => (
+                            <div key={id} className="game__screenshots-img">
+                              <img src={e.image} alt={e.image} />
+                            </div>
+                          ))
+                          .slice(0, 4)}
+                      {trailer.length &&
+                        trailer[0]
+                          .map((e: any, id: number) => (
+                            <div key={id} className="game__screenshots-img">
+                              <img src={e.preview} alt={e.preview} />
+                              <div className="icon-play">
+                                <PlayButton/>
+                              </div>
+                            </div>
+                          ))
+                          .slice(0, 1)}
+                      <div
+                        onClick={() => navigate(`/game/${id}/${slug}/media`)}
+                        className="game__media__view-all"
+                      >
+                        <span>. . .</span>
+                        <span>view all</span>
+                      </div>
                     </div>
-                    {trailer.length &&
-                      trailer[0].map((e: any, id: number) => (
-                        <Player key={id} poster={e.preview}>
-                          <source src={e.data.max} />
-                        </Player>
-                      ))}
-
                   </div>
                   <div className="game__description">
-                    <div className="game__genres">
-                      {genres.length ?
-                        genres.map((e: any, id: number) => (
-                          <h5 key={id}>{e.name}</h5>
-                        )) : ''}
-                    </div>
                     <h1>{name}</h1>
                     <div className="rating-and-favorites">
                       <div
@@ -99,23 +115,86 @@ const SelectedGame = () => {
                         )}
                         <h3>{rating}</h3>
                       </div>
-                      <button
-                        onClick={addBookmark}
-                        className={`add-to-favorites ${token && `${bookmark() ? "bookmark" : ""} `} `}
-                        type="button"
-                      >
-                        <Bookmark />
-                      </button>
+                      {token && (
+                        <>
+                          <button
+                            onClick={addBookmark}
+                            className={`add-to-favorites ${`${
+                              bookmark() ? "bookmark" : ""
+                            }`} `}
+                            type="button"
+                          >
+                            <Bookmark />
+                          </button>
+                        </>
+                      )}
                     </div>
                     <h4>{description_raw}</h4>
-                    <div className="game__platforms">
-                      {platforms.length &&
-                        platforms.map((e: any, id: number) => (
-                          <h5 key={id}>{e.platform.name}</h5>
-                        ))}
+                    <div className="game__meta">
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Platforms</div>
+                        <div className="game__meta-text">
+                          {platforms.length &&
+                            platforms.map((e: any, id: number) => (
+                              <h5 key={id}>{e.platform.name}</h5>
+                            ))}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Genre</div>
+                        <div className="game__meta-text">
+                          {genres.length
+                            ? genres.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Release date</div>
+                        <div className="game__meta-text">
+                          {convertDate(`${released}`)}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Last Modified</div>
+                        <div className="game__meta-text">
+                          {convertDate(`${updated}`)}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Developer</div>
+                        <div className="game__meta-text">
+                          {developers
+                            ? developers.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Publisher</div>
+                        <div className="game__meta-text">
+                          {publishers
+                            ? publishers.map((e: any, id: number) => (
+                                <h5 key={id}>{e.name}</h5>
+                              ))
+                            : ""}
+                        </div>
+                      </div>
+                      <div className="game__meta-block">
+                        <div className="game__meta-title">Age rating</div>
+                        <div className="game__meta-text">
+                          {esrb_rating && esrb_rating.name}
+                        </div>
+                      </div>
+                      <div className="game__meta-block game__meta-block_wide">
+                        <div className="game__meta-title">Website</div>
+                        <div className="game__meta-text">
+                          <a href={website}>{website}</a>
+                        </div>
+                      </div>
                     </div>
-                    <h4>Released: {released}</h4>
-                    <a href={website}>{website}</a>
                   </div>
                 </main>
               )

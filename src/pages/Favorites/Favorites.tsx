@@ -1,29 +1,21 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { GameCard, PageTemplate } from '../../components'
-import { IGame } from '../../interfaces';
+import { IGame } from '../../utils/interfaces';
 import './favorites.css'
 
 const Favorites = () => {
-  const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
-
   let arr: any = [];
   let keys = Object.keys(localStorage);
   for (let key of keys) {
-    //@ts-expect-error
-    let item = JSON.parse(localStorage.getItem(key))[0];
-    arr.push(item);
+    let item = JSON.parse(localStorage.getItem(key)!)[0];
+    if (item) arr.push(item);
   }
-  console.log(arr);
 
   return (
     <PageTemplate>
         <div className="games-layout">
           <div className="games-list">
             {arr.length &&
-              arr.map(({background_image, name, id, rating, slug, genres}: IGame) => (
+              arr.map(({background_image, name, id, rating, slug, genres, added, released}: IGame) => (
                 <GameCard
                   key={id}
                   id={id}
@@ -32,6 +24,8 @@ const Favorites = () => {
                   rating={rating}
                   slug={slug}
                   genres={genres}
+                  added={added}
+                  released={released}
                 />
               ))}
           </div>

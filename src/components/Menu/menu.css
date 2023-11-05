@@ -1,24 +1,36 @@
 .menu__wrapper {
   height: 100vh;
-  width: 18vw;
+  width: 220px;
   color: #80858B;
   font-size: 18px;
   font-family: Exo 2;
   font-weight: 600;
   line-height: 24px;
   word-wrap: break-word;
-  padding: 48px 0 4vh 4vw;
+  padding: 30px 0 20px 20px;
   position: fixed;
+  z-index: 10;
+}
+.menu__wrapper .light {
+  background-color: rgb(196, 196, 196);
+}
+.menu__wrapper .dark {
   background-color: black;
 }
 .menu__wrapper .menu__logo {
-  padding: 0 20px 64px 0;
+  padding-bottom: 64px;
+  width: 100%;
+}
+.menu__wrapper .menu__logo:hover {
+  cursor: pointer;
 }
 .menu__wrapper .menu__link {
-  padding: 0 10px 40px 0;
+  padding-bottom: 40px;
+  width: 100%;
   display: flex;
   justify-content: left;
   fill: #80858B;
+  transition: 0.3s;
 }
 .menu__wrapper .menu__link:hover {
   cursor: pointer;
@@ -30,9 +42,10 @@
 }
 .menu__wrapper .rights-reserved {
   position: absolute;
-  left: 4vw;
-  bottom: 4vh;
-  right: 20px;
+  left: 20px;
+  bottom: 20px;
+  font-weight: 400;
+  font-size: 12px;
 }
 .menu__wrapper .active {
   color: #917CFF;

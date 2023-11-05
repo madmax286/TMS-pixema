@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiKeyRawg } from "../../axiosConfig";
 import { Input } from "../../components";
 import PageTemplateSign from "../../components/PageTemplateSign/PageTemplateSign";
+import { apiKeyRawg, user } from "../../utils/key";
+import { ROUTE_HOME, ROUTE_SIGN_UP } from "../../utils/routes";
 import "./signin.css";
 
 const SignIn = () => {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const userEmail = sessionStorage.getItem("email");
-  const userPassword = sessionStorage.getItem("password");
-
+  
   const onClickSignIn = () => {
-    if (email === userEmail && password === userPassword) {
+    if (email === user().email && password === user().password) {
       sessionStorage.setItem("token", `${apiKeyRawg}`);
-      navigate("/games/home");
+      navigate(ROUTE_HOME);
     } else alert("Incorrect Email or Password");
+    window.location.reload()
   };
 
   return (
@@ -46,7 +44,7 @@ const SignIn = () => {
           </button>
           <div className="signup">
             <span>Don't have an account?</span>
-            <Link to={"/signup"}>Sign Up</Link>
+            <Link to={ROUTE_SIGN_UP}>Sign Up</Link>
           </div>
         </div>
       </PageTemplateSign>

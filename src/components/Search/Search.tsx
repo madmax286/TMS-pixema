@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { GET_GENRES, GET_PLATFORMS, GET_SEARCH } from '../../actions/actions';
@@ -9,43 +9,29 @@ import Filters from '../Filters/Filters';
 import './search.css'
 
 const Search = () => {
+  const { input } = useParams<{ input: string }>();
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const navigate = useNavigate();
-  const onFocus = useSelector(({onFocus}) => onFocus)
-  
-  const theme = useSelector(({ theme }) => theme);
-  const [open, setOpen] = useState<boolean>(false);
   const node = useRef<HTMLDivElement>(null);
   const close = () => setOpen(false);
-
+  const [open, setOpen] = useState<boolean>(false);
   const [search, setSearch] = useState("");
-  const rootEl = useRef(null);
 
-  useEffect(() => {
-    if (search.trim().length > 1) dispatch(GET_SEARCH(search, navigate))
-    dispatch(GET_GENRES());
-    dispatch(GET_PLATFORMS());
-
-    const onClick = (e: any) =>
-    //@ts-expect-error
-    rootEl.current.contains(e.target);
-    dispatch({ type: "SET_FOCUS", payload: false });
-    document.addEventListener("click", onClick);
-    return () => document.removeEventListener("click", onClick);
-
-  }, [search]);
+  const handleKeyDown = (event: { key: string; }) => {    
+    if (event.key === 'Enter') {
+      if (search.trim().length > 0) dispatch(GET_SEARCH(search, navigate))
+      dispatch(GET_GENRES());
+      dispatch(GET_PLATFORMS());
+    }
+  };
 
   return (
     <>
-      <div className="search-input" ref={rootEl}>
+      <div className="search-input">
         <input
-          autoFocus={onFocus}
-          onClick={() => {
-            navigate(`/games/search/?search=${search}`);
-            dispatch({ type: "SET_FOCUS", payload: true });
-          }}
+          onKeyDown={handleKeyDown}
           type="search"
-          placeholder="Search..."
+          placeholder={input || "Search"}
           value={search}
           onChange={(e) => setSearch(e.currentTarget.value)}
         />

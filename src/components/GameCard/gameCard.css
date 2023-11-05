@@ -1,12 +1,38 @@
 .game__card {
   display: flex;
   flex-direction: column;
-  width: 32%;
+  width: 100%;
   position: relative;
-  margin-bottom: 10px;
+  background-color: #202020;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.07);
+  transition: all 0.3s;
+}
+@media screen and (max-width: 980px) {
+  .game__card {
+    margin: 20px 0;
+  }
 }
 .game__card:hover {
-  cursor: pointer;
+  transform: scale(1.02);
+}
+.game__card .game__poster {
+  color: white;
+  height: 60%;
+  max-height: 320px;
+  border-radius: 12px 12px 0 0;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+@media screen and (max-width: 1285px) {
+  .game__card .game__poster {
+    height: 60%;
+  }
+}
+@media screen and (max-width: 980px) {
+  .game__card .game__poster {
+    height: 70%;
+  }
 }
 .game__card .added-to-favorites {
   position: absolute;
@@ -26,15 +52,21 @@
   cursor: pointer;
   box-shadow: 0 0 30px 10px #7B61FF;
 }
-.game__card h3, .game__card h4 {
+.game__card h1, .game__card h4, .game__card h5 {
   font-size: 1rem;
   width: 100%;
   color: white;
   margin: 0;
 }
-.game__card h3 {
-  font-size: 16px;
-  margin-right: 3px;
+.game__card h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+  line-height: normal;
+  transition: all 0.3s;
+}
+.game__card h1:hover {
+  cursor: pointer;
+  color: hsla(0, 0%, 100%, 0.4);
 }
 .game__card h4 {
   padding: 0 5px;
@@ -56,29 +88,42 @@
   fill: white;
   height: 80%;
 }
-.game__card .game__poster {
-  color: white;
-  height: 15vw;
-  border-radius: 20px;
-  object-fit: cover;
-  object-position: 50% 50%;
-}
-.game__card .game__poster:hover {
-  box-shadow: 0 0 30px 10px #7B61FF;
-}
 .game__card .game__card-description {
-  margin-top: 2vh;
+  padding: 16px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .game__card .game__card-description .game__card-genres {
   display: flex;
   flex-wrap: wrap;
   color: #AFB2B6;
   width: 100%;
+  margin-bottom: 8px;
 }
 .game__card .game__card-description .game__card-genres span {
   font-size: 14px;
   margin-right: 5px;
+}
+.game__card .game__card-description .game__card-about {
+  width: 100%;
+  align-self: flex-end;
+}
+.game__card .game__card-description .game__card-about .added-count, .game__card .game__card-description .game__card-about .realease-date {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+}
+.game__card .game__card-description .game__card-about .added-count h5, .game__card .game__card-description .game__card-about .realease-date h5 {
+  font-weight: 400;
+  color: #AFB2B6;
+  width: 60%;
+}
+.game__card .game__card-description .game__card-about .added-count h5:nth-child(2), .game__card .game__card-description .game__card-about .realease-date h5:nth-child(2) {
+  width: 40%;
+  display: flex;
+  justify-content: end;
 }
 .game__card .top {
   background-color: #7B61FF;

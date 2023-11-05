@@ -1,3 +1,132 @@
-.settings {
-    color: white;
+.settings_wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: flex-start;
+  padding: 132px 10vw 0 15vw;
+}
+.settings_wrapper .input_container {
+  width: 46%;
+  margin-bottom: 30px;
+}
+.settings_wrapper .input_container::placeholder {
+  color: #80858B;
+}
+.settings_wrapper .profile_container, .settings_wrapper .password_container, .settings_wrapper .color-mode_container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 35px;
+  background-color: #242426;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.settings_wrapper .profile_container .new-password__password_container, .settings_wrapper .password_container .new-password__password_container, .settings_wrapper .color-mode_container .new-password__password_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.settings_wrapper .profile_container .new-password__password_container .input_container, .settings_wrapper .password_container .new-password__password_container .input_container, .settings_wrapper .color-mode_container .new-password__password_container .input_container {
+  width: 46%;
+}
+.settings_wrapper .password_container {
+  flex-direction: column;
+}
+.settings_wrapper .color-mode_container {
+  padding: 20px 35px;
+  align-items: center;
+}
+.settings_wrapper .color-mode_container .theme-name h4:nth-child(2) {
+  color: #AFB2B6;
+  font-weight: 500;
+}
+.settings_wrapper .color-mode_container .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+.settings_wrapper .color-mode_container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.settings_wrapper .color-mode_container .switch input:checked + .slider {
+  background-color: #7B61FF;
+}
+.settings_wrapper .color-mode_container .switch input:focus + .slider {
+  box-shadow: 0 0 1px #7B61FF;
+}
+.settings_wrapper .color-mode_container .switch input:checked + .slider:before {
+  -webkit-transform: translateX(35px);
+  -ms-transform: translateX(35px);
+  transform: translateX(35px);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+}
+.settings_wrapper .color-mode_container .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #a2a2a2;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.settings_wrapper .color-mode_container .switch .slider.round {
+  border-radius: 34px;
+}
+.settings_wrapper .color-mode_container .switch .slider.round:before {
+  border-radius: 50%;
+  background-color: white;
+}
+.settings_wrapper .color-mode_container .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 25px;
+  width: 25px;
+  left: 0;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px rgba(32, 32, 32, 0.2392156863);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.settings_wrapper .buttons_container {
+  width: 50%;
+  height: 5vh;
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.settings_wrapper .buttons_container .btn-cancel, .settings_wrapper .buttons_container .btn-save {
+  width: 45%;
+  height: 100%;
+  color: white;
+  border-radius: 10px;
+  border: solid 2px #323537;
+}
+.settings_wrapper .buttons_container .btn-save {
+  background-color: #7B61FF;
+}
+.settings_wrapper .buttons_container .btn-save:hover {
+  background-color: #917CFF;
+}
+.settings_wrapper .buttons_container .btn-cancel {
+  background-color: #323537;
+}
+.settings_wrapper .buttons_container .btn-cancel:hover {
+  color: #AFB2B6;
 }

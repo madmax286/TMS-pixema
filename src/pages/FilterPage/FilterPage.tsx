@@ -1,34 +1,36 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import instance from "../../axiosConfig";
+import { GET_GENRES, GET_PLATFORMS, SHOW_MORE } from "../../actions/actions";
 import { ButtonShowMore, GameCard, PageTemplate } from "../../components";
-import { IGame } from "../../interfaces";
+import { IGame } from "../../utils/interfaces";
+import './filterPage.css'
 
 const FilterPage = () => {
   const dispatch = useDispatch<ThunkDispatch<any, {}, AnyAction>>();
   const filter = useSelector(({ filter }) => filter);
-  const nextFilter = useSelector(({ nextFilter }) => nextFilter);
+  const nextPage = useSelector(({ nextPage }) => nextPage);
+  const nextResult = useSelector(({ nextResult }) => nextResult);
+  const totalCount = useSelector(({ totalCount }) => totalCount);
+  
+  useEffect(() => {
+    dispatch(GET_GENRES());
+    dispatch(GET_PLATFORMS());
+  }, []);
 
-  const addFilterResults = () => {    
-    instance.get(nextFilter).then((data) => {
-      const nextPage = data.data.next;
-      dispatch({ type: "SET_NEXT_FILTER_PAGE", payload: nextPage });
-
-      const nextResult = data.data.results;
-      if (nextResult.length)
-        dispatch({ type: "SET_FILTER_RESULTS", payload: nextResult });
-    });
-  };
+  const totalResult = [...filter, ...nextResult]
 
   return (
     <div>
       <PageTemplate>
         <div className="games-layout">
+          <div className="results-header">
+            <h5>{totalCount} games found</h5>            
+          </div>
           <div className="games-list">
-            {filter.length &&
-              filter.map(
+            {totalResult.length &&
+              totalResult.map(
                 ({
                   background_image,
                   name,
@@ -36,6 +38,8 @@ const FilterPage = () => {
                   rating,
                   slug,
                   genres,
+                  added, 
+                  released
                 }: IGame) => (
                   <GameCard
                     key={id}
@@ -45,12 +49,14 @@ const FilterPage = () => {
                     rating={rating}
                     slug={slug}
                     genres={genres}
+                    added={added}
+                    released={released}
                   />
                 )
               )}
           </div>
-          {filter.length && nextFilter !== null && (
-            <ButtonShowMore onClick={addFilterResults} />
+          {totalResult.length && nextPage !== null && (
+            <ButtonShowMore onClick={() => dispatch(SHOW_MORE(nextPage))}/>
           )}
         </div>
       </PageTemplate>

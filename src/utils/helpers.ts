@@ -23,3 +23,16 @@ export const useOnClickOutside = (
     };
   }, [ref, closeMenu]);
 };
+
+export const convertDate = (date: string) => {
+  let newDate = new Date(date);
+  let released = newDate.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})
+  return released
+}
+
+let date = new Date().setDate(1)
+export const firstDayMonth = new Date(date).toISOString().split('T')[0]
+export const today = new Date().toISOString().split('T')[0]
+
+//@ts-expect-error
+export const theme = JSON.parse(localStorage.getItem('darkTheme'))
